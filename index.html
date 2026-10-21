@@ -63,18 +63,31 @@
     .content-body {
       padding: 20px 16px;
     }
+
+    /* Centered Shaking Shipping Alert Bar */
+    @keyframes alert-shake {
+      0% { transform: translateX(0) scale(1); }
+      15% { transform: translateX(-3px) rotate(-1deg); }
+      30% { transform: translateX(3px) rotate(1deg); }
+      45% { transform: translateX(-3px) rotate(-0.5deg); }
+      60% { transform: translateX(3px) rotate(0.5deg); }
+      75% { transform: translateX(-1px); }
+      100% { transform: translateX(0) scale(1); }
+    }
     .shipping-alert {
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
+      text-align: center;
       background: #F0FDF4;
-      border: 1px solid #BBF7D0;
+      border: 1.5px solid #BBF7D0;
       color: #166534;
       padding: 12px 14px;
       border-radius: 10px;
       font-size: 13px;
       margin-bottom: 20px;
       line-height: 1.4;
+      animation: alert-shake 1.2s infinite ease-in-out;
     }
 
     /* Swipeable Carousel */
@@ -665,7 +678,6 @@
     { name: "Rosado", hex: "#E8A5B8", file: "rosado.jpg" }
   ];
 
-  // Mapping Colombian departments to key cities/municipalities
   const colombiaData = {
     "Antioquia": ["Medellín", "Bello", "Itagüí", "Envigado", "Rionegro", "Apartadó", "Other / Otro"],
     "Atlántico": ["Barranquilla", "Soledad", "Malambo", "Sabanalarga", "Other / Otro"],
@@ -691,9 +703,7 @@
     "Valle del Cauca": ["Cali", "Palmira", "Buenaventura", "Tuluá", "Buga", "Cartago", "Jamundí", "Other / Otro"]
   };
 
-  // Replace with active Make.com webhook URL or FormSubmit endpoint
   const WEBHOOK_URL = "https://formsubmit.co/ajax/YOUR_EMAIL@DOMAIN.COM"; 
-  // Replace with her Colombian WhatsApp number (57 + 10 digits)
   const BUSINESS_PHONE = "573XXXXXXXXX";
 
   let currentIndex = 0;
@@ -854,7 +864,6 @@
     return list;
   }
 
-  /* Modal Triggers */
   function openOrderModal() {
     const talla = document.querySelector('input[name="talla"]:checked').value;
     const colors = getSelectedColors();
@@ -875,7 +884,6 @@
     document.getElementById('orderModal').style.display = 'none';
   }
 
-  /* Order Submission & Automated Dispatch */
   async function submitOrder(e) {
     e.preventDefault();
     const submitBtn = document.getElementById('submitBtn');
