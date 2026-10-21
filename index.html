@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polos Corporativos | Segutex Dotaciones</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #F1F5F9;
+      color: #0F172A;
+      display: flex;
+      justify-content: center;
+      padding: 20px 12px;
+    }
+    .page-container {
+      max-width: 520px;
+      width: 100%;
+      background: #FFFFFF;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .header-banner {
+      background: #000000;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 0 0 18px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .brand-logo-img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      margin-bottom: 12px;
+    }
+    .brand-fallback-text {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #FCD34D;
+      padding-top: 18px;
+      margin-bottom: 6px;
+    }
+    .hero-title {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 4px;
+      padding: 0 16px;
+    }
+    .hero-subtitle {
+      font-size: 13px;
+      color: #94A3B8;
+      padding: 0 16px;
+    }
+    .content-body {
+      padding: 20px 16px;
+    }
+    .shipping-alert {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      color: #166534;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    /* Swipeable Carousel */
+    .carousel-container {
+      position: relative;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 14px 10px 16px 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 14px;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .carousel-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 270px;
+    }
+    .carousel-slide img {
+      max-height: 250px;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .carousel-slide svg { width: 100%; max-height: 250px; }
+    .carousel-nav-btn {
+      position: absolute;
+      top: 45%;
+      transform: translateY(-50%);
+      background: rgba(15, 23, 42, 0.7);
+      color: #FFFFFF;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.2s;
+    }
+    .carousel-nav-btn:hover { background: #0F172A; }
+    .carousel-nav-btn.prev { left: 8px; }
+    .carousel-nav-btn.next { right: 8px; }
+    .carousel-nav-btn svg { width: 18px; height: 18px; fill: currentColor; }
+
+    .carousel-indicator-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .carousel-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #CBD5E1;
+      transition: all 0.2s;
+    }
+    .carousel-dot.active {
+      width: 18px;
+      border-radius: 10px;
+      background: #0F172A;
+    }
+    .color-label-tag {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .section-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tiers-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .tier-option {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 2px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tier-option input { display: none; }
+    .tier-option:has(input:checked) {
+      border-color: #0F172A;
+      background: #F8FAFC;
+    }
+    .tier-badge {
+      position: absolute;
+      top: -9px;
+      right: 14px;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    .badge-popular { background: #2563EB; color: #FFF; }
+    .badge-best { background: #16A34A; color: #FFF; }
+    .tier-meta h4 { font-size: 15px; font-weight: 700; }
+    .tier-meta p { font-size: 12px; color: #64748B; margin-top: 2px; }
+    .tier-figures { text-align: right; }
+    .tier-price { font-size: 16px; font-weight: 800; color: #0F172A; }
+    .tier-savings { font-size: 11px; font-weight: 700; color: #16A34A; }
+
+    .size-picker {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .size-btn { flex: 1; }
+    .size-btn input { display: none; }
+    .size-btn span {
+      display: block;
+      text-align: center;
+      padding: 12px 0;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .size-btn input:checked + span {
+      background: #0F172A;
+      color: #FFFFFF;
+      border-color: #0F172A;
+    }
+
+    /* Swatches */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .swatch-item input { display: none; }
+    .swatch-circle {
+      display: block;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      margin: 0 auto;
+      cursor: pointer;
+      border: 2px solid #FFF;
+      box-shadow: 0 0 0 1px #CBD5E1;
+      transition: transform 0.15s ease;
+    }
+    .swatch-item input:checked + .swatch-circle {
+      box-shadow: 0 0 0 3px #0F172A;
+      transform: scale(1.08);
+    }
+
+    /* Multi-Color Selection Box */
+    .color-select-box {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 22px;
+    }
+    .color-select-group {
+      margin-bottom: 10px;
+    }
+    .color-select-group:last-child {
+      margin-bottom: 0;
+    }
+    .color-select-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .color-dropdown {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #0F172A;
+      background: #FFFFFF;
+      outline: none;
+    }
+    .color-dropdown:focus {
+      border-color: #0F172A;
+    }
+
+    .order-button {
+      width: 100%;
+      padding: 18px;
+      background: #25D366;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+      transition: background 0.2s ease;
+    }
+    .order-button:hover { background: #20BD5A; }
+    .order-button svg { width: 22px; height: 22px; fill: currentColor; }
+  </style>
+</head>
+<body>
+
+<div class="page-container">
+  <div class="header-banner">
+    <img id="store-logo" src="logo.jpg" alt="Segutex Dotaciones" class="brand-logo-img" onerror="checkLogoFallback(this)">
+    <div id="fallback-logo-text" class="brand-fallback-text" style="display:none;">SEGUTEX DOTACIONES</div>
+    <h1 class="hero-title">Polos Corporativos</h1>
+    <p class="hero-subtitle">Confección y acabados de alta calidad para dotación empresarial</p>
+  </div>
+
+  <div class="content-body">
+    <div class="shipping-alert">
+      <span>🚚 <strong>¡OFERTA LIMITADA!</strong> Envío sin costo adicional a todo el país.</span>
+    </div>
+
+    <!-- Swipeable Photo Carousel -->
+    <div class="carousel-container">
+      <button class="carousel-nav-btn prev" onclick="scrollSlide(-1)" aria-label="Anterior">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+
+      <div class="carousel-track" id="carousel-track"></div>
+
+      <button class="carousel-nav-btn next" onclick="scrollSlide(1)" aria-label="Siguiente">
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+
+      <div class="carousel-indicator-bar" id="carousel-dots"></div>
+      <div class="color-label-tag">Color en pantalla: <span id="color-name">Negro</span></div>
+    </div>
+
+    <!-- 1. Tiers -->
+    <div class="section-label">1. Elige tu promoción</div>
+    <div class="tiers-list">
+      <label class="tier-option">
+        <input type="radio" name="tier" value="1" checked onchange="updateTier(1, 55000)">
+        <div class="tier-meta">
+          <h4>1 Unidad</h4>
+          <p>$55.000 c/u</p>
+        </div>
+        <div class="tier-figures">
+          <div class="tier-price">$55.000 COP</div>
+        </div>
+      </label>
+
+      <label class="tier-option">
+        <span class="tier-badge badge-popular">MÁS POPULAR</span>
+        <input type="radio" name="tier" value="2" onchange="updateTier(2, 100000)">
+        <div class="tier-meta">
+          <h4>Lleva 2 Polos</h4>
+          <p>$50.000 c/u</p>
+        </div>
+        <div class="tier-figures">
+          <div class="tier-price">$100.000 COP</div>
+          <div class="tier-savings">Ahorras $10.000</div>
+        </div>
+      </label>
+
+      <label class="tier-option">
+        <span class="tier-badge badge-best">MEJOR PRECIO</span>
+        <input type="radio" name="tier" value="3" onchange="updateTier(3, 140000)">
+        <div class="tier-meta">
+          <h4>Lleva 3 Polos</h4>
+          <p>$46.667 c/u</p>
+        </div>
+        <div class="tier-figures">
+          <div class="tier-price">$140.000 COP</div>
+          <div class="tier-savings">Ahorras $25.000</div>
+        </div>
+      </label>
+    </div>
+
+    <!-- 2. Sizes -->
+    <div class="section-label">2. Selecciona la Talla</div>
+    <div class="size-picker">
+      <label class="size-btn"><input type="radio" name="talla" value="S" checked><span>S</span></label>
+      <label class="size-btn"><input type="radio" name="talla" value="M"><span>M</span></label>
+      <label class="size-btn"><input type="radio" name="talla" value="L"><span>L</span></label>
+    </div>
+
+    <!-- 3. Color Selection Section -->
+    <div class="section-label">3. Colores Disponibles</div>
+    <div class="swatches-grid" id="swatches-grid"></div>
+
+    <div class="color-select-box" id="color-selectors-container">
+      <!-- Dynamic color dropdowns populate here based on selected tier -->
+    </div>
+
+    <!-- WhatsApp CTA -->
+    <button class="order-button" onclick="sendOrder()">
+      <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.698c1.005.572 1.913.885 2.806.885 3.182 0 5.768-2.587 5.768-5.767.001-3.18-2.585-5.765-5.768-5.765zm0-2.172c4.385 0 7.94 3.555 7.94 7.938 0 4.383-3.555 7.938-7.94 7.938-1.272 0-2.482-.303-3.564-.849l-4.467 1.173 1.194-4.356c-.663-1.157-1.023-2.489-1.023-3.906 0-4.383 3.555-7.938 7.86-7.938z"/></svg>
+      Ordenar por WhatsApp — <span id="cta-price">$55.000 COP</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  const colorsData = [
+    { name: "Negro", hex: "#1C1C1C", file: "negro.jpg" },
+    { name: "Beige", hex: "#D8C8B4", file: "beige.jpg" },
+    { name: "Azul Rey", hex: "#1A4B8C", file: "azul-rey.jpg" },
+    { name: "Verde Botella", hex: "#1B4332", file: "verde-botella.jpg" },
+    { name: "Rojo", hex: "#C91A25", file: "rojo.jpg" },
+    { name: "Fucsia", hex: "#D91B7A", file: "fucsia.jpg" },
+    { name: "Azul Turquesa", hex: "#00A4B4", file: "azul-turquesa.jpg" },
+    { name: "Azul Hortensia", hex: "#6F8FB9", file: "azul-hortensia.jpg" },
+    { name: "Lila", hex: "#B39EB5", file: "lila.jpg" },
+    { name: "Rosado", hex: "#E8A5B8", file: "rosado.jpg" }
+  ];
+
+  // Her Colombian WhatsApp number (57 + 10 digits):
+  const businessPhone = "573202838796";
+
+  let currentIndex = 0;
+  let currentTierQty = 1;
+  const track = document.getElementById('carousel-track');
+  const dotsContainer = document.getElementById('carousel-dots');
+  const swatchesContainer = document.getElementById('swatches-grid');
+  const colorSelectorsContainer = document.getElementById('color-selectors-container');
+
+  function initApp() {
+    colorsData.forEach((col, idx) => {
+      // Build Slide
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      slide.innerHTML = `
+        <img src="${col.file}" alt="Polo ${col.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <svg viewBox="0 0 300 300" style="display:none;">
+          <path d="M85,55 L115,30 L185,30 L215,55 L255,85 L225,125 L195,105 L195,275 L105,275 L105,105 L75,125 L45,85 Z" fill="${col.hex}" stroke="#0F172A" stroke-width="2"/>
+          <path d="M115,30 L150,75 L185,30 Z" fill="#FFFFFF" opacity="0.2"/>
+          <path d="M140,75 L160,75 L160,140 L140,140 Z" fill="#000000" opacity="0.15"/>
+          <circle cx="150" cy="90" r="3" fill="#FFF"/>
+          <circle cx="150" cy="110" r="3" fill="#FFF"/>
+          <circle cx="150" cy="130" r="3" fill="#FFF"/>
+        </svg>
+      `;
+      track.appendChild(slide);
+
+      // Build Dot
+      const dot = document.createElement('div');
+      dot.className = `carousel-dot ${idx === 0 ? 'active' : ''}`;
+      dotsContainer.appendChild(dot);
+
+      // Build Swatch
+      const swatch = document.createElement('label');
+      swatch.className = 'swatch-item';
+      swatch.title = col.name;
+      swatch.innerHTML = `
+        <input type="radio" name="color_swatch" value="${col.name}" ${idx === 0 ? 'checked' : ''} onchange="goToSlide(${idx})">
+        <span class="swatch-circle" style="background:${col.hex};"></span>
+      `;
+      swatchesContainer.appendChild(swatch);
+    });
+
+    track.addEventListener('scroll', () => {
+      const slideWidth = track.clientWidth;
+      const newIdx = Math.round(track.scrollLeft / slideWidth);
+      if (newIdx !== currentIndex && newIdx >= 0 && newIdx < colorsData.length) {
+        syncState(newIdx);
+      }
+    }, { passive: true });
+
+    renderColorSelectors(1);
+  }
+
+  function renderColorSelectors(qty) {
+    currentTierQty = qty;
+    colorSelectorsContainer.innerHTML = '';
+
+    for (let i = 1; i <= qty; i++) {
+      const group = document.createElement('div');
+      group.className = 'color-select-group';
+      
+      const label = document.createElement('label');
+      label.innerText = qty === 1 ? 'Color Seleccionado:' : `Color para Polo ${i}:`;
+      
+      const select = document.createElement('select');
+      select.className = 'color-dropdown';
+      select.id = `polo-color-${i}`;
+      
+      // Auto-preview on carousel when dropdown 1 changes
+      if (i === 1) {
+        select.onchange = function() {
+          const selectedIdx = colorsData.findIndex(c => c.name === this.value);
+          if (selectedIdx !== -1) goToSlide(selectedIdx);
+        };
+      }
+
+      colorsData.forEach((col, idx) => {
+        const opt = document.createElement('option');
+        opt.value = col.name;
+        opt.innerText = col.name;
+        // Default color assignment
+        if (i === 1 && idx === currentIndex) opt.selected = true;
+        if (i === 2 && idx === (currentIndex + 1) % colorsData.length) opt.selected = true;
+        if (i === 3 && idx === (currentIndex + 2) % colorsData.length) opt.selected = true;
+        select.appendChild(opt);
+      });
+
+      group.appendChild(label);
+      group.appendChild(select);
+      colorSelectorsContainer.appendChild(group);
+    }
+  }
+
+  function syncState(index) {
+    currentIndex = index;
+    document.getElementById('color-name').innerText = colorsData[index].name;
+
+    const dots = document.querySelectorAll('.carousel-dot');
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+
+    const radios = document.querySelectorAll('input[name="color_swatch"]');
+    if (radios[index]) radios[index].checked = true;
+
+    // Sync dropdown 1 with current active slide
+    const firstDropdown = document.getElementById('polo-color-1');
+    if (firstDropdown) firstDropdown.value = colorsData[index].name;
+  }
+
+  function goToSlide(index) {
+    const slideWidth = track.clientWidth;
+    track.scrollTo({ left: index * slideWidth, behavior: 'smooth' });
+    syncState(index);
+  }
+
+  function scrollSlide(dir) {
+    let next = currentIndex + dir;
+    if (next < 0) next = colorsData.length - 1;
+    if (next >= colorsData.length) next = 0;
+    goToSlide(next);
+  }
+
+  function checkLogoFallback(img) {
+    if (img.src.includes('logo.jpg')) {
+      img.src = 'logo.png';
+    } else if (img.src.includes('logo.png')) {
+      img.src = 'logo.jpeg';
+    } else {
+      img.style.display = 'none';
+      document.getElementById('fallback-logo-text').style.display = 'block';
+    }
+  }
+
+  function updateTier(qty, price) {
+    document.getElementById('cta-price').innerText = '$' + price.toLocaleString('es-CO') + ' COP';
+    renderColorSelectors(qty);
+  }
+
+  function sendOrder() {
+    const tier = document.querySelector('input[name="tier"]:checked').value;
+    const talla = document.querySelector('input[name="talla"]:checked').value;
+    const priceText = document.getElementById('cta-price').innerText;
+
+    let colorsChosen = [];
+    for (let i = 1; i <= currentTierQty; i++) {
+      const drop = document.getElementById(`polo-color-${i}`);
+      if (drop) colorsChosen.push(currentTierQty === 1 ? drop.value : `Polo ${i}: ${drop.value}`);
+    }
+
+    const message = `¡Hola Segutex Dotaciones!\nQuiero hacer el siguiente pedido:\n\n• Paquete: ${tier} Polo(s) (${priceText})\n• Talla: ${talla}\n• Colores: ${colorsChosen.join(', ')}\n• Beneficio: Envío sin costo adicional\n\n¿Me confirman disponibilidad y datos para el envío?`;
+    window.open(`https://wa.me/${businessPhone}?text=${encodeURIComponent(message)}`, '_blank');
+  }
+
+  initApp();
+</script>
+
+</body>
+</html>
