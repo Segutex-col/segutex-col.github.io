@@ -62,7 +62,6 @@
       padding: 16px;
     }
 
-    /* Subtle shipping banner without shake */
     .shipping-alert {
       display: flex;
       align-items: center;
@@ -257,9 +256,14 @@
       outline: none;
     }
 
-    @keyframes gentle-pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.015); }
+    /* Fast Shake Animation for CTA */
+    @keyframes fast-shake {
+      0% { transform: translateX(0) scale(1); }
+      20% { transform: translateX(-3px) rotate(-1deg); }
+      40% { transform: translateX(3px) rotate(1deg); }
+      60% { transform: translateX(-3px) rotate(-1deg); }
+      80% { transform: translateX(3px) rotate(1deg); }
+      100% { transform: translateX(0) scale(1); }
     }
 
     .cta-btn {
@@ -279,11 +283,14 @@
       justify-content: center;
       gap: 2px;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);
-      animation: gentle-pulse 2s infinite ease-in-out;
-      transition: background 0.2s;
+      box-shadow: 0 6px 20px rgba(220, 38, 38, 0.45);
+      animation: fast-shake 0.5s infinite ease-in-out;
+      transition: background 0.2s, transform 0.1s;
     }
-    .cta-btn:hover { background: #B91C1C; animation: none; }
+    .cta-btn:hover {
+      background: #B91C1C;
+      animation: none;
+    }
     .cta-btn span.subtext {
       font-size: 12px;
       font-weight: 600;
@@ -362,6 +369,8 @@
       margin-bottom: 12px;
       line-height: 1.45;
     }
+
+    /* Trust Badges inside Sheet */
     .trust-badges-container {
       display: flex;
       flex-direction: column;
@@ -506,7 +515,7 @@
     <div class="section-label">2. Elige Color y Talla por Polo</div>
     <div class="config-container" id="config-items-container"></div>
 
-    <!-- Primary Action CTA Button -->
+    <!-- Fast-Shaking Primary CTA Button -->
     <button class="cta-btn" onclick="openOrderModal()">
       <span>🛍️ PEDIR CONTRA ENTREGA</span>
       <span class="subtext" id="cta-price-subtext">Pagas $55.000 COP al recibir en casa</span>
@@ -530,6 +539,7 @@
 
     <div class="order-summary-box" id="modalSummary"></div>
 
+    <!-- Trust Badges Section -->
     <div class="trust-badges-container">
       <div class="badge-item">
         <span class="badge-icon">🛡️</span>
@@ -724,7 +734,7 @@
       title.className = 'config-item-title';
       title.innerText = qty === 1 ? 'Polo Seleccionado' : `Polo #${i}`;
 
-      const row = document.createElement('row');
+      const row = document.createElement('div');
       row.className = 'config-row';
 
       const colColor = document.createElement('div');
