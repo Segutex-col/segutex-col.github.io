@@ -26,18 +26,17 @@
       background: #000000;
       color: #FFFFFF;
       text-align: center;
-      padding: 0 16px 20px 16px;
+      padding: 0 0 20px 0; /* Removed side padding so logo hits edges */
       display: flex;
       flex-direction: column;
       align-items: center;
     }
     .brand-logo-img {
       width: 100%;
-      max-height: 95px;
+      height: auto; /* Scales naturally based on width */
       display: block;
       object-fit: contain;
-      object-position: center;
-      margin: 0 auto 12px auto;
+      margin-bottom: 12px;
     }
     .brand-fallback-text {
       font-size: 18px;
