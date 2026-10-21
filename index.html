@@ -64,16 +64,16 @@
       padding: 20px 16px;
     }
 
-    /* Centered Shaking Shipping Alert Bar */
-    @keyframes alert-shake {
+    /* Unified High-Speed Readable Shaking Effect (0.5s Cycle) */
+    @keyframes fast-shake {
       0% { transform: translateX(0) scale(1); }
-      15% { transform: translateX(-3px) rotate(-1deg); }
-      30% { transform: translateX(3px) rotate(1deg); }
-      45% { transform: translateX(-3px) rotate(-0.5deg); }
-      60% { transform: translateX(3px) rotate(0.5deg); }
-      75% { transform: translateX(-1px); }
+      20% { transform: translateX(-3px) rotate(-1deg); }
+      40% { transform: translateX(3px) rotate(1deg); }
+      60% { transform: translateX(-3px) rotate(-1deg); }
+      80% { transform: translateX(3px) rotate(1deg); }
       100% { transform: translateX(0) scale(1); }
     }
+
     .shipping-alert {
       display: flex;
       align-items: center;
@@ -82,12 +82,13 @@
       background: #F0FDF4;
       border: 1.5px solid #BBF7D0;
       color: #166534;
-      padding: 12px 14px;
+      padding: 14px 16px;
       border-radius: 10px;
-      font-size: 13px;
+      font-size: 14.5px;
+      font-weight: 700;
       margin-bottom: 20px;
       line-height: 1.4;
-      animation: alert-shake 1.2s infinite ease-in-out;
+      animation: fast-shake 0.5s infinite ease-in-out;
     }
 
     /* Swipeable Carousel */
@@ -298,16 +299,7 @@
       outline: none;
     }
 
-    /* Fast Shaking Dynamic Red Button (0.9s Cycle) */
-    @keyframes quick-shake {
-      0% { transform: translateX(0) scale(1); }
-      15% { transform: translateX(-4px) rotate(-1.5deg); }
-      30% { transform: translateX(4px) rotate(1.5deg); }
-      45% { transform: translateX(-4px) rotate(-1deg); }
-      60% { transform: translateX(4px) rotate(1deg); }
-      75% { transform: translateX(-2px); }
-      100% { transform: translateX(0) scale(1); }
-    }
+    /* Fast Shaking Red Button (0.5s Unified Speed) */
     .shaky-red-btn {
       width: 100%;
       padding: 18px 16px;
@@ -315,7 +307,7 @@
       color: #FFFFFF;
       border: none;
       border-radius: 12px;
-      font-size: 17px;
+      font-size: 18.5px;
       font-weight: 900;
       letter-spacing: 0.5px;
       text-transform: uppercase;
@@ -326,7 +318,7 @@
       gap: 4px;
       cursor: pointer;
       box-shadow: 0 6px 20px rgba(220, 38, 38, 0.45);
-      animation: quick-shake 0.9s infinite ease-in-out;
+      animation: fast-shake 0.5s infinite ease-in-out;
       transition: background 0.2s ease, transform 0.1s;
     }
     .shaky-red-btn:hover {
@@ -334,10 +326,10 @@
       animation: none;
     }
     .shaky-red-btn span.subtext {
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 13.5px;
+      font-weight: 700;
       letter-spacing: 0;
-      opacity: 0.9;
+      opacity: 0.95;
       text-transform: none;
     }
 
@@ -348,7 +340,7 @@
       border-radius: 10px;
       padding: 14px 16px;
       margin-top: 16px;
-      font-size: 12.5px;
+      font-size: 13px;
       line-height: 1.5;
       color: #78350F;
       text-align: left;
@@ -564,9 +556,9 @@
 
     <div class="color-select-box" id="color-selectors-container"></div>
 
-    <!-- Shaking Dynamic Red CTA Button -->
+    <!-- Fast Shaking Dynamic Red CTA Button -->
     <button class="shaky-red-btn" onclick="openOrderModal()">
-      <span>🛍️ PEDIR CONTRA ENTREGA</span>
+      <span>🛍️ PAGAR CONTRA ENTREGA</span>
       <span class="subtext" id="cta-price-subtext">Pagas $55.000 COP al recibir en casa</span>
     </button>
 
