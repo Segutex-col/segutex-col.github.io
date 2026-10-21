@@ -34,7 +34,7 @@
     .brand-logo-img {
       width: auto;
       max-width: 100%;
-      height: 95px; /* Increased by 50% from 75px */
+      height: 95px;
       display: block;
       object-fit: contain;
       object-position: center;
@@ -65,7 +65,6 @@
       padding: 20px 16px;
     }
 
-    /* Unified High-Speed Readable Shaking Effect (0.5s Cycle) */
     @keyframes fast-shake {
       0% { transform: translateX(0) scale(1); }
       20% { transform: translateX(-3px) rotate(-1deg); }
@@ -92,7 +91,6 @@
       animation: fast-shake 0.5s infinite ease-in-out;
     }
 
-    /* Swipeable Carousel */
     .carousel-container {
       position: relative;
       background: #F8FAFC;
@@ -178,7 +176,6 @@
       color: #334155;
     }
 
-    /* Tiers */
     .section-label {
       font-size: 13px;
       font-weight: 700;
@@ -226,7 +223,6 @@
     .tier-price { font-size: 16px; font-weight: 800; color: #0F172A; }
     .tier-savings { font-size: 11px; font-weight: 700; color: #16A34A; }
 
-    /* Item Configuration Card (Color + Size per shirt) */
     .config-container {
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
@@ -274,7 +270,6 @@
       outline: none;
     }
 
-    /* Color Swatches */
     .swatches-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -298,7 +293,6 @@
       transform: scale(1.08);
     }
 
-    /* Fast Shaking Red Button (0.5s Unified Speed) */
     .shaky-red-btn {
       width: 100%;
       padding: 18px 16px;
@@ -332,7 +326,6 @@
       text-transform: none;
     }
 
-    /* Cash On Delivery & Delivery Times Notice Box */
     .delivery-notice-box {
       background: #FFFBEB;
       border: 1.5px dashed #F59E0B;
@@ -352,7 +345,6 @@
       font-weight: 700;
     }
 
-    /* Modal Sheet Pop-Up */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -409,68 +401,44 @@
       border-radius: 10px;
       padding: 12px;
       font-size: 13px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       line-height: 1.5;
     }
-<!-- Trust Badges Section Only -->
-<div class="trust-badges-container">
-  <div class="badge-item">
-    <span class="badge-icon">🛡️</span>
-    <div>
-      <h4>Pago 100% Contra Entrega</h4>
-      <p>Paga seguro al recibir tu pedido en cualquier ciudad de Colombia.</p>
-    </div>
-  </div>
-  
-  <div class="badge-item">
-    <span class="badge-icon">🚚</span>
-    <div>
-      <h4>Envíos Confiables</h4>
-      <p>Despachos rápidos con redes logísticas nacionales (Inter Rapidísimo).</p>
-    </div>
-  </div>
 
-  <div class="badge-item">
-    <span class="badge-icon">👔</span>
-    <div>
-      <h4>Dotación Empresarial</h4>
-      <p>Calidad prémium en polos corporativos y textiles duraderos.</p>
-    </div>
-  </div>
-</div>
+    /* Trust Badges Styling */
+    .trust-badges-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      border-left: 4px solid #16A34A;
+    }
+    .badge-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .badge-icon {
+      font-size: 20px;
+      line-height: 1;
+    }
+    .badge-item h4 {
+      margin: 0;
+      font-size: 13px;
+      color: #0F172A;
+      font-weight: 700;
+    }
+    .badge-item p {
+      margin: 0;
+      font-size: 11px;
+      color: #64748B;
+      line-height: 1.3;
+    }
 
-<style>
-.trust-badges-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 15px 0;
-  padding: 12px;
-  background: #f8f9fa;
-  border-radius: 8px;
-  border-left: 4px solid #25d366;
-}
-.badge-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.badge-icon {
-  font-size: 22px;
-}
-.badge-item h4 {
-  margin: 0;
-  font-size: 13px;
-  color: #333;
-  font-weight: 600;
-}
-.badge-item p {
-  margin: 0;
-  font-size: 11px;
-  color: #666;
-  line-height: 1.3;
-}
-</style>
     .form-group { margin-bottom: 14px; }
     .form-group label {
       display: block;
@@ -498,7 +466,6 @@
     }
     .form-row .form-group { flex: 1; }
 
-    /* Static Red Confirmation Button */
     .static-red-confirm-btn {
       width: 100%;
       padding: 18px;
@@ -632,6 +599,33 @@
 
     <div class="order-summary-box" id="modalSummary"></div>
 
+    <!-- Trust Badges Section -->
+    <div class="trust-badges-container">
+      <div class="badge-item">
+        <span class="badge-icon">🛡️</span>
+        <div>
+          <h4>Pago 100% Contra Entrega</h4>
+          <p>Paga seguro al recibir tu pedido en cualquier ciudad de Colombia.</p>
+        </div>
+      </div>
+      
+      <div class="badge-item">
+        <span class="badge-icon">🚚</span>
+        <div>
+          <h4>Envíos Confiables</h4>
+          <p>Despachos rápidos con redes logísticas nacionales (Inter Rapidísimo).</p>
+        </div>
+      </div>
+
+      <div class="badge-item">
+        <span class="badge-icon">👔</span>
+        <div>
+          <h4>Dotación Empresarial</h4>
+          <p>Calidad prémium en polos corporativos y textiles duraderos.</p>
+        </div>
+      </div>
+    </div>
+
     <form id="deliveryForm" onsubmit="submitOrder(event)">
       <div class="form-group">
         <label>Nombre y Apellido *</label>
@@ -695,7 +689,6 @@
         <textarea id="cust_notes" rows="2" placeholder="Ej. Dejar en portería o llamar antes de llegar"></textarea>
       </div>
 
-      <!-- Static Red Confirmation Button -->
       <button type="submit" class="static-red-confirm-btn" id="submitBtn">
         CONFIRMAR PEDIDO CONTRA ENTREGA
       </button>
@@ -814,7 +807,6 @@
       const row = document.createElement('div');
       row.className = 'config-row';
 
-      // Color column
       const colColor = document.createElement('div');
       colColor.className = 'config-col';
       const labelColor = document.createElement('label');
@@ -843,7 +835,6 @@
       colColor.appendChild(labelColor);
       colColor.appendChild(selectColor);
 
-      // Size column
       const colSize = document.createElement('div');
       colSize.className = 'config-col';
       const labelSize = document.createElement('label');
