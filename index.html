@@ -26,7 +26,7 @@
       background: #000000;
       color: #FFFFFF;
       text-align: center;
-      padding: 18px 16px 20px 16px;
+      padding: 0 16px 20px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -44,6 +44,7 @@
       font-weight: 800;
       letter-spacing: 2px;
       color: #FCD34D;
+      padding-top: 16px;
       margin-bottom: 8px;
     }
     .hero-title {
@@ -76,7 +77,7 @@
       line-height: 1.4;
     }
 
-    /* Swipeable Carousel */
+    /* Carousel */
     .carousel-container {
       position: relative;
       background: #F8FAFC;
@@ -127,9 +128,7 @@
       justify-content: center;
       cursor: pointer;
       z-index: 10;
-      transition: background 0.2s;
     }
-    .carousel-nav-btn:hover { background: #0F172A; }
     .carousel-nav-btn.prev { left: 8px; }
     .carousel-nav-btn.next { right: 8px; }
     .carousel-nav-btn svg { width: 18px; height: 18px; fill: currentColor; }
@@ -188,8 +187,8 @@
     }
     .tier-option input { display: none; }
     .tier-option:has(input:checked) {
-      border-color: #0F172A;
-      background: #F8FAFC;
+      border-color: #DC2626;
+      background: #FEF2F2;
     }
     .tier-badge {
       position: absolute;
@@ -231,7 +230,7 @@
       border-color: #0F172A;
     }
 
-    /* Swatches */
+    /* Color Swatches */
     .swatches-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -255,7 +254,6 @@
       transform: scale(1.08);
     }
 
-    /* Multi-Color Selection Box */
     .color-select-box {
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
@@ -263,12 +261,8 @@
       padding: 14px;
       margin-bottom: 22px;
     }
-    .color-select-group {
-      margin-bottom: 10px;
-    }
-    .color-select-group:last-child {
-      margin-bottom: 0;
-    }
+    .color-select-group { margin-bottom: 10px; }
+    .color-select-group:last-child { margin-bottom: 0; }
     .color-select-group label {
       display: block;
       font-size: 12px;
@@ -288,29 +282,163 @@
       background: #FFFFFF;
       outline: none;
     }
-    .color-dropdown:focus {
-      border-color: #0F172A;
+
+    /* Shaking Dynamic Red Button */
+    @keyframes shake-animation {
+      0% { transform: translateX(0) scale(1); }
+      20% { transform: translateX(-3px) rotate(-1deg); }
+      40% { transform: translateX(3px) rotate(1deg); }
+      60% { transform: translateX(-3px) rotate(-1deg); }
+      80% { transform: translateX(3px) rotate(1deg); }
+      100% { transform: translateX(0) scale(1); }
+    }
+    .shaky-red-btn {
+      width: 100%;
+      padding: 20px 16px;
+      background: #DC2626;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(220, 38, 38, 0.45);
+      animation: shake-animation 2.2s infinite ease-in-out;
+      transition: background 0.2s ease, transform 0.1s;
+    }
+    .shaky-red-btn:hover {
+      background: #B91C1C;
+      animation: none;
+    }
+    .shaky-red-btn span.subtext {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0;
+      opacity: 0.9;
+      text-transform: none;
     }
 
-    .order-button {
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0;
+    }
+    .modal-sheet {
+      width: 100%;
+      max-width: 520px;
+      background: #FFFFFF;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      padding: 24px 20px 30px 20px;
+      box-shadow: 0 -10px 30px rgba(0,0,0,0.2);
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: slideUp 0.25s ease-out;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 12px;
+    }
+    .modal-header h3 { font-size: 18px; font-weight: 800; color: #0F172A; }
+    .close-btn {
+      background: #F1F5F9;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #64748B;
+    }
+    .order-summary-box {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 13px;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 5px;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: #DC2626;
+    }
+    .form-row {
+      display: flex;
+      gap: 10px;
+    }
+    .form-row .form-group { flex: 1; }
+
+    /* Static Red Confirmation Button */
+    .static-red-confirm-btn {
       width: 100%;
       padding: 18px;
-      background: #25D366;
+      background: #DC2626;
       color: #FFFFFF;
       border: none;
       border-radius: 10px;
       font-size: 16px;
       font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+      margin-top: 10px;
+    }
+    .static-red-confirm-btn:hover { background: #B91C1C; }
+    .trust-footer {
+      text-align: center;
+      font-size: 12px;
+      color: #64748B;
+      margin-top: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
-      transition: background 0.2s ease;
+      gap: 6px;
     }
-    .order-button:hover { background: #20BD5A; }
-    .order-button svg { width: 22px; height: 22px; fill: currentColor; }
   </style>
 </head>
 <body>
@@ -325,7 +453,7 @@
 
   <div class="content-body">
     <div class="shipping-alert">
-      <span>🚚 <strong>¡OFERTA LIMITADA!</strong> Envío sin costo adicional a todo el país.</span>
+      <span>🚚 <strong>PAGO CONTRA ENTREGA:</strong> Pagas en efectivo al recibir en la puerta de tu casa u oficina.</span>
     </div>
 
     <!-- Swipeable Photo Carousel -->
@@ -393,19 +521,78 @@
       <label class="size-btn"><input type="radio" name="talla" value="L"><span>L</span></label>
     </div>
 
-    <!-- 3. Color Selection Section -->
+    <!-- 3. Colors -->
     <div class="section-label">3. Colores Disponibles</div>
     <div class="swatches-grid" id="swatches-grid"></div>
 
-    <div class="color-select-box" id="color-selectors-container">
-      <!-- Dynamic color dropdowns populate here based on selected tier -->
+    <div class="color-select-box" id="color-selectors-container"></div>
+
+    <!-- Dynamic Shaky Red CTA Button -->
+    <button class="shaky-red-btn" onclick="openOrderModal()">
+      <span>🛍️ PEDIR CONTRA ENTREGA</span>
+      <span class="subtext" id="cta-price-subtext">Pagas $55.000 COP al recibir en casa</span>
+    </button>
+  </div>
+</div>
+
+<!-- Modal Pop-Up Form -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal-sheet">
+    <div class="modal-header">
+      <h3>Datos de Envío (Contra Entrega)</h3>
+      <button class="close-btn" onclick="closeOrderModal()">&times;</button>
     </div>
 
-    <!-- WhatsApp CTA -->
-    <button class="order-button" onclick="sendOrder()">
-      <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.698c1.005.572 1.913.885 2.806.885 3.182 0 5.768-2.587 5.768-5.767.001-3.18-2.585-5.765-5.768-5.765zm0-2.172c4.385 0 7.94 3.555 7.94 7.938 0 4.383-3.555 7.938-7.94 7.938-1.272 0-2.482-.303-3.564-.849l-4.467 1.173 1.194-4.356c-.663-1.157-1.023-2.489-1.023-3.906 0-4.383 3.555-7.938 7.86-7.938z"/></svg>
-      Ordenar por WhatsApp — <span id="cta-price">$55.000 COP</span>
-    </button>
+    <div class="order-summary-box" id="modalSummary">
+      <!-- Order details populated dynamically -->
+    </div>
+
+    <form id="deliveryForm" onsubmit="submitOrder(event)">
+      <div class="form-group">
+        <label>Nombre y Apellido *</label>
+        <input type="text" id="cust_name" required placeholder="Ej. Carlos Restrepo">
+      </div>
+
+      <div class="form-group">
+        <label>Número de WhatsApp / Teléfono *</label>
+        <input type="tel" id="cust_phone" required placeholder="Ej. 310 123 4567">
+      </div>
+
+      <div class="form-group">
+        <label>Correo Electrónico (para confirmación de despacho) *</label>
+        <input type="email" id="cust_email" required placeholder="tucorreo@ejemplo.com">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Departamento *</label>
+          <input type="text" id="cust_dept" required placeholder="Ej. Antioquia">
+        </div>
+        <div class="form-group">
+          <label>Ciudad / Municipio *</label>
+          <input type="text" id="cust_city" required placeholder="Ej. Medellín">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Dirección Completa y Barrio *</label>
+        <input type="text" id="cust_address" required placeholder="Ej. Calle 10 # 40-20, Apto 302, El Poblado">
+      </div>
+
+      <div class="form-group">
+        <label>Notas de Entrega (Opcional)</label>
+        <textarea id="cust_notes" rows="2" placeholder="Ej. Dejar en portería o llamar antes de llegar"></textarea>
+      </div>
+
+      <!-- Static Red Confirm Button -->
+      <button type="submit" class="static-red-confirm-btn" id="submitBtn">
+        CONFIRMAR PEDIDO CONTRA ENTREGA
+      </button>
+
+      <div class="trust-footer">
+        🔒 Datos protegidos. Envío asegurado con transportadora nacional.
+      </div>
+    </form>
   </div>
 </div>
 
@@ -423,11 +610,14 @@
     { name: "Rosado", hex: "#E8A5B8", file: "rosado.jpg" }
   ];
 
+  // Configure your webhook or backend endpoint (Make.com, FormSubmit, etc.)
+  const WEBHOOK_URL = "https://formsubmit.co/ajax/YOUR_EMAIL@DOMAIN.COM"; 
   // Her Colombian WhatsApp number (57 + 10 digits):
-  const businessPhone = "573202838796";
+  const BUSINESS_PHONE = "573XXXXXXXXX";
 
   let currentIndex = 0;
   let currentTierQty = 1;
+  let currentTierPrice = 55000;
   const track = document.getElementById('carousel-track');
   const dotsContainer = document.getElementById('carousel-dots');
   const swatchesContainer = document.getElementById('swatches-grid');
@@ -435,7 +625,6 @@
 
   function initApp() {
     colorsData.forEach((col, idx) => {
-      // Build Slide
       const slide = document.createElement('div');
       slide.className = 'carousel-slide';
       slide.innerHTML = `
@@ -451,12 +640,10 @@
       `;
       track.appendChild(slide);
 
-      // Build Dot
       const dot = document.createElement('div');
       dot.className = `carousel-dot ${idx === 0 ? 'active' : ''}`;
       dotsContainer.appendChild(dot);
 
-      // Build Swatch
       const swatch = document.createElement('label');
       swatch.className = 'swatch-item';
       swatch.title = col.name;
@@ -555,23 +742,98 @@
   }
 
   function updateTier(qty, price) {
-    document.getElementById('cta-price').innerText = '$' + price.toLocaleString('es-CO') + ' COP';
+    currentTierPrice = price;
+    document.getElementById('cta-price-subtext').innerText = `Pagas $${price.toLocaleString('es-CO')} COP al recibir en casa`;
     renderColorSelectors(qty);
   }
 
-  function sendOrder() {
-    const tier = document.querySelector('input[name="tier"]:checked').value;
-    const talla = document.querySelector('input[name="talla"]:checked').value;
-    const priceText = document.getElementById('cta-price').innerText;
-
-    let colorsChosen = [];
+  function getSelectedColors() {
+    let list = [];
     for (let i = 1; i <= currentTierQty; i++) {
       const drop = document.getElementById(`polo-color-${i}`);
-      if (drop) colorsChosen.push(currentTierQty === 1 ? drop.value : `Polo ${i}: ${drop.value}`);
+      if (drop) list.push(drop.value);
+    }
+    return list;
+  }
+
+  /* Modal Handlers */
+  function openOrderModal() {
+    const talla = document.querySelector('input[name="talla"]:checked').value;
+    const colors = getSelectedColors();
+    const formattedPrice = '$' + currentTierPrice.toLocaleString('es-CO') + ' COP';
+
+    document.getElementById('modalSummary').innerHTML = `
+      <strong>Resumen de tu pedido:</strong><br>
+      • <strong>Cantidad:</strong> ${currentTierQty} Polo(s) (${formattedPrice})<br>
+      • <strong>Talla:</strong> ${talla}<br>
+      • <strong>Colores:</strong> ${colors.join(', ')}<br>
+      • <strong>Envío:</strong> Gratis (Pago Contra Entrega)
+    `;
+
+    document.getElementById('orderModal').style.display = 'flex';
+  }
+
+  function closeOrderModal() {
+    document.getElementById('orderModal').style.display = 'none';
+  }
+
+  /* Form Processing & Automated Notifications */
+  async function submitOrder(e) {
+    e.preventDefault();
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.innerText = "PROCESANDO PEDIDO...";
+    submitBtn.disabled = true;
+
+    const talla = document.querySelector('input[name="talla"]:checked').value;
+    const colors = getSelectedColors();
+    const formattedPrice = '$' + currentTierPrice.toLocaleString('es-CO') + ' COP';
+
+    const orderPayload = {
+      nombre: document.getElementById('cust_name').value,
+      telefono: document.getElementById('cust_phone').value,
+      email: document.getElementById('cust_email').value,
+      departamento: document.getElementById('cust_dept').value,
+      ciudad: document.getElementById('cust_city').value,
+      direccion: document.getElementById('cust_address').value,
+      notas: document.getElementById('cust_notes').value || 'Sin observaciones',
+      paquete: `${currentTierQty} Polo(s)`,
+      valor_a_cobrar: formattedPrice,
+      talla: talla,
+      colores: colors.join(', ')
+    };
+
+    try {
+      // 1. Post to Automation Webhook (Make.com or FormSubmit)
+      await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(orderPayload)
+      });
+    } catch (err) {
+      console.warn("Automation webhook logged:", err);
     }
 
-    const message = `¡Hola Segutex Dotaciones!\nQuiero hacer el siguiente pedido:\n\n• Paquete: ${tier} Polo(s) (${priceText})\n• Talla: ${talla}\n• Colores: ${colorsChosen.join(', ')}\n• Beneficio: Envío sin costo adicional\n\n¿Me confirman disponibilidad y datos para el envío?`;
-    window.open(`https://wa.me/${businessPhone}?text=${encodeURIComponent(message)}`, '_blank');
+    // 2. Direct fallback WhatsApp trigger:
+    // This sends the fully packed order sheet directly without requiring back-and-forth chat.
+    const waText = `📦 *NUEVO PEDIDO CONTRA ENTREGA - SEGUTEX*\n\n` +
+      `👤 *Cliente:* ${orderPayload.nombre}\n` +
+      `📞 *Teléfono:* ${orderPayload.telefono}\n` +
+      `📧 *Email:* ${orderPayload.email}\n` +
+      `📍 *Destino:* ${orderPayload.ciudad}, ${orderPayload.departamento}\n` +
+      `🏠 *Dirección:* ${orderPayload.direccion}\n` +
+      `📝 *Notas:* ${orderPayload.notas}\n\n` +
+      `🛍️ *Detalle del Pedido:*\n` +
+      `• Cantidad: ${orderPayload.paquete}\n` +
+      `• Talla: ${orderPayload.talla}\n` +
+      `• Colores: ${orderPayload.colores}\n` +
+      `💰 *Total a Cobrar:* ${orderPayload.valor_a_cobrar} (Envío Gratis)`;
+
+    window.open(`https://wa.me/${BUSINESS_PHONE}?text=${encodeURIComponent(waText)}`, '_blank');
+
+    alert("¡Pedido recibido con éxito! Te hemos enviado la confirmación y procederemos con el despacho.");
+    closeOrderModal();
+    submitBtn.innerText = "CONFIRMAR PEDIDO CONTRA ENTREGA";
+    submitBtn.disabled = false;
   }
 
   initApp();
