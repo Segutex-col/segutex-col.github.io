@@ -12,21 +12,21 @@
       color: #0F172A;
       display: flex;
       justify-content: center;
-      padding: 20px 12px;
+      padding: 16px 12px;
     }
     .page-container {
-      max-width: 520px;
+      max-width: 480px;
       width: 100%;
       background: #FFFFFF;
       border-radius: 16px;
-      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
       overflow: hidden;
     }
     .header-banner {
       background: #000000;
       color: #FFFFFF;
       text-align: center;
-      padding: 16px 16px 20px 16px;
+      padding: 18px 16px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -34,70 +34,57 @@
     .brand-logo-img {
       width: auto;
       max-width: 100%;
-      height: 95px;
+      height: 80px;
       display: block;
       object-fit: contain;
-      object-position: center;
-      margin: 0 auto 12px auto;
+      margin: 0 auto 10px auto;
     }
     .brand-fallback-text {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 800;
       letter-spacing: 2px;
       color: #FCD34D;
-      padding-top: 16px;
-      margin-bottom: 8px;
+      padding-top: 10px;
+      margin-bottom: 6px;
     }
     .hero-title {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
-      margin-bottom: 6px;
-      padding: 0 8px;
+      margin-bottom: 4px;
     }
     .hero-subtitle {
       font-size: 13px;
-      line-height: 1.45;
+      line-height: 1.4;
       color: #CBD5E1;
-      max-width: 420px;
-      padding: 0 8px;
+      max-width: 380px;
     }
     .content-body {
-      padding: 20px 16px;
+      padding: 16px;
     }
 
-    @keyframes fast-shake {
-      0% { transform: translateX(0) scale(1); }
-      20% { transform: translateX(-3px) rotate(-1deg); }
-      40% { transform: translateX(3px) rotate(1deg); }
-      60% { transform: translateX(-3px) rotate(-1deg); }
-      80% { transform: translateX(3px) rotate(1deg); }
-      100% { transform: translateX(0) scale(1); }
-    }
-
+    /* Subtle shipping banner without shake */
     .shipping-alert {
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       background: #F0FDF4;
-      border: 1.5px solid #BBF7D0;
+      border: 1px solid #BBF7D0;
       color: #166534;
-      padding: 14px 16px;
-      border-radius: 10px;
-      font-size: 14.5px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      line-height: 1.4;
-      animation: fast-shake 0.5s infinite ease-in-out;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
     }
 
     .carousel-container {
       position: relative;
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
-      border-radius: 14px;
-      padding: 14px 10px 16px 10px;
-      margin-bottom: 20px;
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 18px;
       overflow: hidden;
     }
     .carousel-track {
@@ -107,37 +94,37 @@
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      gap: 14px;
+      gap: 10px;
     }
     .carousel-track::-webkit-scrollbar { display: none; }
     .carousel-slide {
       flex: 0 0 100%;
       scroll-snap-align: center;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 380px;
+      height: 320px;
       background: #000;
+      border-radius: 8px;
+      overflow: hidden;
     }
     .carousel-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center top;
-      border-radius: 10px;
     }
-    .carousel-slide svg { width: 100%; max-height: 250px; }
+    .carousel-slide svg { width: 100%; max-height: 220px; }
     .carousel-nav-btn {
       position: absolute;
       top: 45%;
       transform: translateY(-50%);
-      background: rgba(15, 23, 42, 0.7);
+      background: rgba(15, 23, 42, 0.65);
       color: #FFFFFF;
       border: none;
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -145,61 +132,61 @@
       cursor: pointer;
       z-index: 10;
     }
-    .carousel-nav-btn.prev { left: 8px; }
-    .carousel-nav-btn.next { right: 8px; }
-    .carousel-nav-btn svg { width: 18px; height: 18px; fill: currentColor; }
+    .carousel-nav-btn.prev { left: 6px; }
+    .carousel-nav-btn.next { right: 6px; }
+    .carousel-nav-btn svg { width: 16px; height: 16px; fill: currentColor; }
 
     .carousel-indicator-bar {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 6px;
-      margin-top: 10px;
+      gap: 5px;
+      margin-top: 8px;
     }
     .carousel-dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: #CBD5E1;
       transition: all 0.2s;
     }
     .carousel-dot.active {
-      width: 18px;
+      width: 16px;
       border-radius: 10px;
       background: #0F172A;
     }
     .color-label-tag {
       text-align: center;
-      margin-top: 8px;
-      font-size: 13px;
+      margin-top: 6px;
+      font-size: 12px;
       font-weight: 700;
-      color: #334155;
+      color: #475569;
     }
 
     .section-label {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
-      color: #334155;
-      margin-bottom: 10px;
+      color: #475569;
+      margin-bottom: 8px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
     .tiers-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 22px;
+      gap: 10px;
+      margin-bottom: 18px;
     }
     .tier-option {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border: 2px solid #E2E8F0;
-      border-radius: 10px;
-      padding: 14px 16px;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 12px 14px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: border-color 0.2s, background 0.2s;
     }
     .tier-option input { display: none; }
     .tier-option:has(input:checked) {
@@ -208,142 +195,114 @@
     }
     .tier-badge {
       position: absolute;
-      top: -9px;
-      right: 14px;
-      font-size: 10px;
+      top: -8px;
+      right: 12px;
+      font-size: 9px;
       font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 10px;
+      padding: 2px 7px;
+      border-radius: 8px;
     }
     .badge-popular { background: #2563EB; color: #FFF; }
     .badge-best { background: #16A34A; color: #FFF; }
-    .tier-meta h4 { font-size: 15px; font-weight: 700; }
-    .tier-meta p { font-size: 12px; color: #64748B; margin-top: 2px; }
+    .tier-meta h4 { font-size: 14px; font-weight: 700; }
+    .tier-meta p { font-size: 11px; color: #64748B; margin-top: 1px; }
     .tier-figures { text-align: right; }
-    .tier-price { font-size: 16px; font-weight: 800; color: #0F172A; }
+    .tier-price { font-size: 15px; font-weight: 800; color: #0F172A; }
     .tier-savings { font-size: 11px; font-weight: 700; color: #16A34A; }
 
     .config-container {
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
-      border-radius: 10px;
-      padding: 14px;
-      margin-bottom: 22px;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 16px;
     }
     .config-item-card {
       background: #FFFFFF;
-      border: 1px solid #CBD5E1;
-      border-radius: 8px;
-      padding: 12px;
-      margin-bottom: 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 8px;
     }
     .config-item-card:last-child { margin-bottom: 0; }
     .config-item-title {
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 800;
       color: #0F172A;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       text-transform: uppercase;
     }
     .config-row {
       display: flex;
-      gap: 10px;
+      gap: 8px;
     }
     .config-col { flex: 1; }
     .config-col label {
       display: block;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
-      color: #475569;
-      margin-bottom: 3px;
+      color: #64748B;
+      margin-bottom: 2px;
       text-transform: uppercase;
     }
     .config-select {
       width: 100%;
-      padding: 9px 10px;
-      border: 1.5px solid #CBD5E1;
+      padding: 8px;
+      border: 1px solid #CBD5E1;
       border-radius: 6px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       color: #0F172A;
       background: #FFFFFF;
       outline: none;
     }
 
-    .swatches-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-      margin-bottom: 22px;
-    }
-    .swatch-item input { display: none; }
-    .swatch-circle {
-      display: block;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      margin: 0 auto;
-      cursor: pointer;
-      border: 2px solid #FFF;
-      box-shadow: 0 0 0 1px #CBD5E1;
-      transition: transform 0.15s ease;
-    }
-    .swatch-item input:checked + .swatch-circle {
-      box-shadow: 0 0 0 3px #0F172A;
-      transform: scale(1.08);
+    @keyframes gentle-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.015); }
     }
 
-    .shaky-red-btn {
+    .cta-btn {
       width: 100%;
-      padding: 18px 16px;
+      padding: 16px 14px;
       background: #DC2626;
       color: #FFFFFF;
       border: none;
-      border-radius: 12px;
-      font-size: 18.5px;
+      border-radius: 10px;
+      font-size: 16px;
       font-weight: 900;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
       text-transform: uppercase;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 2px;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(220, 38, 38, 0.45);
-      animation: fast-shake 0.5s infinite ease-in-out;
-      transition: background 0.2s ease, transform 0.1s;
+      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);
+      animation: gentle-pulse 2s infinite ease-in-out;
+      transition: background 0.2s;
     }
-    .shaky-red-btn:hover {
-      background: #B91C1C;
-      animation: none;
-    }
-    .shaky-red-btn span.subtext {
-      font-size: 13.5px;
-      font-weight: 700;
-      letter-spacing: 0;
-      opacity: 0.95;
+    .cta-btn:hover { background: #B91C1C; animation: none; }
+    .cta-btn span.subtext {
+      font-size: 12px;
+      font-weight: 600;
       text-transform: none;
+      opacity: 0.95;
     }
 
     .delivery-notice-box {
       background: #FFFBEB;
-      border: 1.5px dashed #F59E0B;
-      border-radius: 10px;
-      padding: 14px 16px;
-      margin-top: 16px;
-      font-size: 13px;
-      line-height: 1.5;
+      border: 1px solid #FDE68A;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 14px;
+      font-size: 12px;
+      line-height: 1.45;
       color: #78350F;
-      text-align: left;
     }
-    .delivery-notice-box p {
-      margin-bottom: 6px;
-    }
-    .delivery-notice-box p:last-child {
-      margin-bottom: 0;
-      font-weight: 700;
-    }
+    .delivery-notice-box p { margin-bottom: 4px; }
+    .delivery-notice-box p:last-child { margin-bottom: 0; }
 
     .modal-overlay {
       position: fixed;
@@ -357,19 +316,18 @@
       display: none;
       align-items: flex-end;
       justify-content: center;
-      padding: 0;
     }
     .modal-sheet {
       width: 100%;
-      max-width: 520px;
+      max-width: 480px;
       background: #FFFFFF;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      padding: 24px 20px 30px 20px;
-      box-shadow: 0 -10px 30px rgba(0,0,0,0.2);
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      padding: 20px 16px 24px 16px;
+      box-shadow: 0 -10px 30px rgba(0,0,0,0.15);
       max-height: 90vh;
       overflow-y: auto;
-      animation: slideUp 0.25s ease-out;
+      animation: slideUp 0.2s ease-out;
     }
     @keyframes slideUp {
       from { transform: translateY(100%); }
@@ -379,16 +337,16 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       border-bottom: 1px solid #E2E8F0;
-      padding-bottom: 12px;
+      padding-bottom: 10px;
     }
-    .modal-header h3 { font-size: 18px; font-weight: 800; color: #0F172A; }
+    .modal-header h3 { font-size: 16px; font-weight: 800; color: #0F172A; }
     .close-btn {
       background: #F1F5F9;
       border: none;
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       font-size: 16px;
       font-weight: 700;
@@ -398,61 +356,46 @@
     .order-summary-box {
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
-      border-radius: 10px;
-      padding: 12px;
-      font-size: 13px;
-      margin-bottom: 14px;
-      line-height: 1.5;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12.5px;
+      margin-bottom: 12px;
+      line-height: 1.45;
     }
-
-    /* Trust Badges Styling */
     .trust-badges-container {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 16px;
-      padding: 12px;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 10px;
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
-      border-radius: 10px;
-      border-left: 4px solid #16A34A;
+      border-radius: 8px;
+      border-left: 3px solid #16A34A;
     }
     .badge-item {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
-    .badge-icon {
-      font-size: 20px;
-      line-height: 1;
-    }
-    .badge-item h4 {
-      margin: 0;
-      font-size: 13px;
-      color: #0F172A;
-      font-weight: 700;
-    }
-    .badge-item p {
-      margin: 0;
-      font-size: 11px;
-      color: #64748B;
-      line-height: 1.3;
-    }
+    .badge-icon { font-size: 18px; line-height: 1; }
+    .badge-item h4 { margin: 0; font-size: 12px; color: #0F172A; font-weight: 700; }
+    .badge-item p { margin: 0; font-size: 11px; color: #64748B; line-height: 1.25; }
 
-    .form-group { margin-bottom: 14px; }
+    .form-group { margin-bottom: 12px; }
     .form-group label {
       display: block;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: #334155;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
     .form-group input, .form-group select, .form-group textarea {
       width: 100%;
-      padding: 11px 12px;
-      border: 1.5px solid #CBD5E1;
-      border-radius: 8px;
-      font-size: 14px;
+      padding: 9px 10px;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      font-size: 13px;
       outline: none;
       font-family: inherit;
       background: #FFFFFF;
@@ -460,37 +403,30 @@
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
       border-color: #DC2626;
     }
-    .form-row {
-      display: flex;
-      gap: 10px;
-    }
+    .form-row { display: flex; gap: 8px; }
     .form-row .form-group { flex: 1; }
 
     .static-red-confirm-btn {
       width: 100%;
-      padding: 18px;
+      padding: 15px;
       background: #DC2626;
       color: #FFFFFF;
       border: none;
-      border-radius: 10px;
-      font-size: 16px;
+      border-radius: 8px;
+      font-size: 15px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
-      margin-top: 10px;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+      margin-top: 8px;
     }
     .static-red-confirm-btn:hover { background: #B91C1C; }
     .trust-footer {
       text-align: center;
-      font-size: 12px;
+      font-size: 11px;
       color: #64748B;
-      margin-top: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -506,7 +442,7 @@
 
   <div class="content-body">
     <div class="shipping-alert">
-      <span>🚚 <strong>¡OFERTA LIMITADA!</strong> Envío sin costo adicional a todo el país.</span>
+      <span>🚚 <strong>¡OFERTA ACTIVA!</strong> Envío sin costo adicional a toda Colombia.</span>
     </div>
 
     <!-- Swipeable Photo Carousel -->
@@ -522,7 +458,7 @@
       </button>
 
       <div class="carousel-indicator-bar" id="carousel-dots"></div>
-      <div class="color-label-tag">Color en pantalla: <span id="color-name">Negro</span></div>
+      <div class="color-label-tag">Color mostrado: <span id="color-name">Negro</span></div>
     </div>
 
     <!-- 1. Tiers -->
@@ -570,21 +506,16 @@
     <div class="section-label">2. Elige Color y Talla por Polo</div>
     <div class="config-container" id="config-items-container"></div>
 
-    <!-- Quick Color Swatches Reference -->
-    <div class="section-label">Vista Rápida de Colores</div>
-    <div class="swatches-grid" id="swatches-grid"></div>
-
-    <!-- Fast Shaking Dynamic Red CTA Button -->
-    <button class="shaky-red-btn" onclick="openOrderModal()">
-      <span>🛍️ PAGAR CONTRA ENTREGA</span>
+    <!-- Primary Action CTA Button -->
+    <button class="cta-btn" onclick="openOrderModal()">
+      <span>🛍️ PEDIR CONTRA ENTREGA</span>
       <span class="subtext" id="cta-price-subtext">Pagas $55.000 COP al recibir en casa</span>
     </button>
 
     <!-- Cash on Delivery Notice Box -->
     <div class="delivery-notice-box">
-      <p>El envío es <strong>GRATIS!!! 🔥</strong> y toma de 4 a 5 días hábiles en llegar. (Para algunos municipios el tiempo es menor).</p>
-      <p>Por favor cuente con el dinero disponible para cancelar el valor y en caso de no estar en la dirección de envío, designar a una persona para recibir y pagar.</p>
-      <p>AGRADECEMOS SU COLABORACIÓN 🤝</p>
+      <p>• <strong>Envío Gratis:</strong> Entrega estimada de 4 a 5 días hábiles según municipio.</p>
+      <p>• <strong>Pago Contra Entrega:</strong> Ten listo el valor en efectivo o transferencia al recibir tu paquete.</p>
     </div>
   </div>
 </div>
@@ -599,13 +530,12 @@
 
     <div class="order-summary-box" id="modalSummary"></div>
 
-    <!-- Trust Badges Section -->
     <div class="trust-badges-container">
       <div class="badge-item">
         <span class="badge-icon">🛡️</span>
         <div>
           <h4>Pago 100% Contra Entrega</h4>
-          <p>Paga seguro al recibir tu pedido en cualquier ciudad de Colombia.</p>
+          <p>Paga únicamente al recibir tu paquete en casa.</p>
         </div>
       </div>
       
@@ -613,15 +543,15 @@
         <span class="badge-icon">🚚</span>
         <div>
           <h4>Envíos Confiables</h4>
-          <p>Despachos rápidos con redes logísticas nacionales (Inter Rapidísimo).</p>
+          <p>Despachos respaldados por redes logísticas nacionales.</p>
         </div>
       </div>
 
       <div class="badge-item">
         <span class="badge-icon">👔</span>
         <div>
-          <h4>Dotación Empresarial</h4>
-          <p>Calidad prémium en polos corporativos y textiles duraderos.</p>
+          <h4>Calidad Garantizada</h4>
+          <p>Confección prémium en piqué resistente para uso intensivo.</p>
         </div>
       </div>
     </div>
@@ -674,7 +604,7 @@
         <div class="form-group">
           <label>Ciudad / Municipio *</label>
           <select id="cust_city" required>
-            <option value="" disabled selected>Selecciona primero el depto</option>
+            <option value="" disabled selected>Selecciona municipio</option>
           </select>
         </div>
       </div>
@@ -694,7 +624,7 @@
       </button>
 
       <div class="trust-footer">
-        🔒 Datos protegidos. Envío asegurado con transportadora nacional.
+        🔒 Datos protegidos. Despacho nacional asegurado.
       </div>
     </form>
   </div>
@@ -747,7 +677,6 @@
   let currentTierPrice = 55000;
   const track = document.getElementById('carousel-track');
   const dotsContainer = document.getElementById('carousel-dots');
-  const swatchesContainer = document.getElementById('swatches-grid');
   const configContainer = document.getElementById('config-items-container');
 
   function initApp() {
@@ -770,15 +699,6 @@
       const dot = document.createElement('div');
       dot.className = `carousel-dot ${idx === 0 ? 'active' : ''}`;
       dotsContainer.appendChild(dot);
-
-      const swatch = document.createElement('label');
-      swatch.className = 'swatch-item';
-      swatch.title = col.name;
-      swatch.innerHTML = `
-        <input type="radio" name="color_swatch" value="${col.name}" ${idx === 0 ? 'checked' : ''} onchange="goToSlide(${idx})">
-        <span class="swatch-circle" style="background:${col.hex};"></span>
-      `;
-      swatchesContainer.appendChild(swatch);
     });
 
     track.addEventListener('scroll', () => {
@@ -804,7 +724,7 @@
       title.className = 'config-item-title';
       title.innerText = qty === 1 ? 'Polo Seleccionado' : `Polo #${i}`;
 
-      const row = document.createElement('div');
+      const row = document.createElement('row');
       row.className = 'config-row';
 
       const colColor = document.createElement('div');
@@ -884,9 +804,6 @@
 
     const dots = document.querySelectorAll('.carousel-dot');
     dots.forEach((d, i) => d.classList.toggle('active', i === index));
-
-    const radios = document.querySelectorAll('input[name="color_swatch"]');
-    if (radios[index]) radios[index].checked = true;
 
     const firstDropdown = document.getElementById('item-color-1');
     if (firstDropdown) firstDropdown.value = colorsData[index].name;
