@@ -417,7 +417,7 @@
       color: #334155;
       margin-bottom: 5px;
     }
-    .form-group input, .form-group textarea {
+    .form-group input, .form-group select, .form-group textarea {
       width: 100%;
       padding: 11px 12px;
       border: 1.5px solid #CBD5E1;
@@ -425,8 +425,9 @@
       font-size: 14px;
       outline: none;
       font-family: inherit;
+      background: #FFFFFF;
     }
-    .form-group input:focus, .form-group textarea:focus {
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
       border-color: #DC2626;
     }
     .form-row {
@@ -474,7 +475,8 @@
     <p class="hero-subtitle">Confeccionadas con la más alta calidad: ideales para uso personal, eventos o dotación corporativa</p>
   </div>
 
-  <div class="shipping-alert">
+  <div class="content-body">
+    <div class="shipping-alert">
       <span>🚚 <strong>¡OFERTA LIMITADA!</strong> Envío sin costo adicional a todo el país.</span>
     </div>
 
@@ -593,11 +595,37 @@
       <div class="form-row">
         <div class="form-group">
           <label>Departamento *</label>
-          <input type="text" id="cust_dept" required placeholder="Ej. Antioquia">
+          <select id="cust_dept" required onchange="updateCities()">
+            <option value="" disabled selected>Selecciona departamento</option>
+            <option value="Antioquia">Antioquia</option>
+            <option value="Atlántico">Atlántico</option>
+            <option value="Bogotá D.C.">Bogotá D.C.</option>
+            <option value="Bolívar">Bolívar</option>
+            <option value="Boyacá">Boyacá</option>
+            <option value="Caldas">Caldas</option>
+            <option value="Caquetá">Caquetá</option>
+            <option value="Cauca">Cauca</option>
+            <option value="Cesar">Cesar</option>
+            <option value="Córdoba">Córdoba</option>
+            <option value="Cundinamarca">Cundinamarca</option>
+            <option value="Huila">Huila</option>
+            <option value="Magdalena">Magdalena</option>
+            <option value="Meta">Meta</option>
+            <option value="Nariño">Nariño</option>
+            <option value="Norte de Santander">Norte de Santander</option>
+            <option value="Quindío">Quindío</option>
+            <option value="Risaralda">Risaralda</option>
+            <option value="Santander">Santander</option>
+            <option value="Sucre">Sucre</option>
+            <option value="Tolima">Tolima</option>
+            <option value="Valle del Cauca">Valle del Cauca</option>
+          </select>
         </div>
         <div class="form-group">
           <label>Ciudad / Municipio *</label>
-          <input type="text" id="cust_city" required placeholder="Ej. Medellín">
+          <select id="cust_city" required>
+            <option value="" disabled selected>Selecciona primero el depto</option>
+          </select>
         </div>
       </div>
 
@@ -637,7 +665,33 @@
     { name: "Rosado", hex: "#E8A5B8", file: "rosado.jpg" }
   ];
 
-  // Replace with your active Make.com webhook URL (or FormSubmit endpoint)
+  // Mapping Colombian departments to key cities/municipalities
+  const colombiaData = {
+    "Antioquia": ["Medellín", "Bello", "Itagüí", "Envigado", "Rionegro", "Apartadó", "Other / Otro"],
+    "Atlántico": ["Barranquilla", "Soledad", "Malambo", "Sabanalarga", "Other / Otro"],
+    "Bogotá D.C.": ["Bogotá D.C."],
+    "Bolívar": ["Cartagena de Indias", "Magangué", "Turbaco", "Other / Otro"],
+    "Boyacá": ["Tunja", "Duitama", "Sogamoso", "Chiquinquirá", "Other / Otro"],
+    "Caldas": ["Manizales", "Villamaría", "Chinchiná", "Other / Otro"],
+    "Caquetá": ["Florencia", "Other / Otro"],
+    "Cauca": ["Popayán", "Santander de Quilichao", "Other / Otro"],
+    "Cesar": ["Valledupar", "Aguachica", "Other / Otro"],
+    "Córdoba": ["Montería", "Cereté", "Sahagún", "Lorica", "Other / Otro"],
+    "Cundinamarca": ["Soacha", "Chía", "Zipaquirá", "Facatativá", "Girardot", "Mosquera", "Madrid", "Funza", "Other / Otro"],
+    "Huila": ["Neiva", "Pitalito", "Garzón", "Other / Otro"],
+    "Magdalena": ["Santa Marta", "Ciénaga", "Fundación", "Other / Otro"],
+    "Meta": ["Villavicencio", "Acacías", "Granada", "Other / Otro"],
+    "Nariño": ["Pasto", "Ipiales", "Tumaco", "Other / Otro"],
+    "Norte de Santander": ["Cúcuta", "Ocaña", "Villa del Rosario", "Los Patios", "Other / Otro"],
+    "Quindío": ["Armenia", "Calarcá", "Tebaida", "Other / Otro"],
+    "Risaralda": ["Pereira", "Dosquebradas", "Santa Rosa de Cabal", "Other / Otro"],
+    "Santander": ["Bucaramanga", "Floridablanca", "Girón", "Piedecuesta", "Barrancabermeja", "Other / Otro"],
+    "Sucre": ["Sincelejo", "Corozal", "Other / Otro"],
+    "Tolima": ["Ibagué", "Espinal", "Melgar", "Other / Otro"],
+    "Valle del Cauca": ["Cali", "Palmira", "Buenaventura", "Tuluá", "Buga", "Cartago", "Jamundí", "Other / Otro"]
+  };
+
+  // Replace with active Make.com webhook URL or FormSubmit endpoint
   const WEBHOOK_URL = "https://formsubmit.co/ajax/YOUR_EMAIL@DOMAIN.COM"; 
   // Replace with her Colombian WhatsApp number (57 + 10 digits)
   const BUSINESS_PHONE = "573XXXXXXXXX";
@@ -727,6 +781,23 @@
       group.appendChild(label);
       group.appendChild(select);
       colorSelectorsContainer.appendChild(group);
+    }
+  }
+
+  function updateCities() {
+    const deptSelect = document.getElementById('cust_dept');
+    const citySelect = document.getElementById('cust_city');
+    const selectedDept = deptSelect.value;
+
+    citySelect.innerHTML = '<option value="" disabled selected>Selecciona municipio</option>';
+
+    if (colombiaData[selectedDept]) {
+      colombiaData[selectedDept].forEach(city => {
+        const opt = document.createElement('option');
+        opt.value = city;
+        opt.innerText = city;
+        citySelect.appendChild(opt);
+      });
     }
   }
 
@@ -839,7 +910,6 @@
       console.warn("Automation webhook logged:", err);
     }
 
-    // Direct WhatsApp fallback: pre-formats the full shipping manifest
     const waText = `📦 *NUEVO PEDIDO CONTRA ENTREGA - SEGUTEX*\n\n` +
       `👤 *Cliente:* ${orderPayload.nombre}\n` +
       `📞 *Teléfono:* ${orderPayload.telefono}\n` +
