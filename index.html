@@ -62,21 +62,35 @@
       padding: 16px;
     }
 
+    /* Fast Shake Animation for Shipping Banner & CTA */
+    @keyframes fast-shake {
+      0% { transform: translateX(0) scale(1); }
+      20% { transform: translateX(-3px) rotate(-1deg); }
+      40% { transform: translateX(3px) rotate(1deg); }
+      60% { transform: translateX(-3px) rotate(-1deg); }
+      80% { transform: translateX(3px) rotate(1deg); }
+      100% { transform: translateX(0) scale(1); }
+    }
+
+    /* Shaking Green Shipping Alert Banner */
     .shipping-alert {
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       background: #F0FDF4;
-      border: 1px solid #BBF7D0;
+      border: 1.5px solid #BBF7D0;
       color: #166534;
-      padding: 10px 14px;
+      padding: 12px 14px;
       border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 13.5px;
+      font-weight: 700;
       margin-bottom: 16px;
+      line-height: 1.4;
+      animation: fast-shake 0.5s infinite ease-in-out;
     }
 
+    /* Vertical 4:5 Aspect Ratio Photo Carousel */
     .carousel-container {
       position: relative;
       background: #F8FAFC;
@@ -103,7 +117,7 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 320px;
+      aspect-ratio: 4 / 5;
       background: #000;
       border-radius: 8px;
       overflow: hidden;
@@ -114,10 +128,10 @@
       object-fit: cover;
       object-position: center top;
     }
-    .carousel-slide svg { width: 100%; max-height: 220px; }
+    .carousel-slide svg { width: 100%; max-height: 80%; }
     .carousel-nav-btn {
       position: absolute;
-      top: 45%;
+      top: 50%;
       transform: translateY(-50%);
       background: rgba(15, 23, 42, 0.65);
       color: #FFFFFF;
@@ -256,16 +270,6 @@
       outline: none;
     }
 
-    /* Fast Shake Animation for CTA */
-    @keyframes fast-shake {
-      0% { transform: translateX(0) scale(1); }
-      20% { transform: translateX(-3px) rotate(-1deg); }
-      40% { transform: translateX(3px) rotate(1deg); }
-      60% { transform: translateX(-3px) rotate(-1deg); }
-      80% { transform: translateX(3px) rotate(1deg); }
-      100% { transform: translateX(0) scale(1); }
-    }
-
     .cta-btn {
       width: 100%;
       padding: 16px 14px;
@@ -370,7 +374,6 @@
       line-height: 1.45;
     }
 
-    /* Trust Badges inside Sheet */
     .trust-badges-container {
       display: flex;
       flex-direction: column;
@@ -450,11 +453,12 @@
   </div>
 
   <div class="content-body">
+    <!-- Shaking Shipping Alert Banner -->
     <div class="shipping-alert">
       <span>🚚 <strong>¡OFERTA ACTIVA!</strong> Envío sin costo adicional a toda Colombia.</span>
     </div>
 
-    <!-- Swipeable Photo Carousel -->
+    <!-- 4:5 Aspect Ratio Photo Carousel -->
     <div class="carousel-container">
       <button class="carousel-nav-btn prev" onclick="scrollSlide(-1)" aria-label="Anterior">
         <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
