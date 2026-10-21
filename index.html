@@ -26,7 +26,7 @@
       background: #000000;
       color: #FFFFFF;
       text-align: center;
-      padding: 16px 16px 20px 16px; /* Restored clean banner padding */
+      padding: 16px 16px 20px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -34,7 +34,7 @@
     .brand-logo-img {
       width: auto;
       max-width: 100%;
-      height: 75px; /* Keeps it short and compact */
+      height: 75px;
       display: block;
       object-fit: contain;
       object-position: center;
@@ -120,14 +120,14 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 380px; /* Expands the height */
-      background: #000; /* Fallback background */
+      height: 380px;
+      background: #000;
     }
     .carousel-slide img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Fills the square box completely */
-      object-position: center top; /* Keeps the head and shirt in frame */
+      object-fit: cover;
+      object-position: center top;
       border-radius: 10px;
     }
     .carousel-slide svg { width: 100%; max-height: 250px; }
@@ -226,28 +226,52 @@
     .tier-price { font-size: 16px; font-weight: 800; color: #0F172A; }
     .tier-savings { font-size: 11px; font-weight: 700; color: #16A34A; }
 
-    /* Sizes */
-    .size-picker {
-      display: flex;
-      gap: 10px;
+    /* Item Configuration Card (Color + Size per shirt) */
+    .config-container {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 14px;
       margin-bottom: 22px;
     }
-    .size-btn { flex: 1; }
-    .size-btn input { display: none; }
-    .size-btn span {
-      display: block;
-      text-align: center;
-      padding: 12px 0;
+    .config-item-card {
+      background: #FFFFFF;
       border: 1px solid #CBD5E1;
       border-radius: 8px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
+      padding: 12px;
+      margin-bottom: 12px;
     }
-    .size-btn input:checked + span {
-      background: #0F172A;
-      color: #FFFFFF;
-      border-color: #0F172A;
+    .config-item-card:last-child { margin-bottom: 0; }
+    .config-item-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .config-row {
+      display: flex;
+      gap: 10px;
+    }
+    .config-col { flex: 1; }
+    .config-col label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+    }
+    .config-select {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0F172A;
+      background: #FFFFFF;
+      outline: none;
     }
 
     /* Color Swatches */
@@ -255,7 +279,7 @@
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 22px;
     }
     .swatch-item input { display: none; }
     .swatch-circle {
@@ -272,35 +296,6 @@
     .swatch-item input:checked + .swatch-circle {
       box-shadow: 0 0 0 3px #0F172A;
       transform: scale(1.08);
-    }
-
-    .color-select-box {
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      border-radius: 10px;
-      padding: 14px;
-      margin-bottom: 22px;
-    }
-    .color-select-group { margin-bottom: 10px; }
-    .color-select-group:last-child { margin-bottom: 0; }
-    .color-select-group label {
-      display: block;
-      font-size: 12px;
-      font-weight: 700;
-      color: #475569;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-    }
-    .color-dropdown {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1.5px solid #CBD5E1;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      color: #0F172A;
-      background: #FFFFFF;
-      outline: none;
     }
 
     /* Fast Shaking Red Button (0.5s Unified Speed) */
@@ -546,19 +541,13 @@
       </label>
     </div>
 
-    <!-- 2. Sizes -->
-    <div class="section-label">2. Selecciona la Talla</div>
-    <div class="size-picker">
-      <label class="size-btn"><input type="radio" name="talla" value="S" checked><span>S</span></label>
-      <label class="size-btn"><input type="radio" name="talla" value="M"><span>M</span></label>
-      <label class="size-btn"><input type="radio" name="talla" value="L"><span>L</span></label>
-    </div>
+    <!-- 2. Colors & Sizes Configuration per Item -->
+    <div class="section-label">2. Elige Color y Talla por Polo</div>
+    <div class="config-container" id="config-items-container"></div>
 
-    <!-- 3. Colors -->
-    <div class="section-label">3. Colores Disponibles</div>
+    <!-- Quick Color Swatches Reference -->
+    <div class="section-label">Vista Rápida de Colores</div>
     <div class="swatches-grid" id="swatches-grid"></div>
-
-    <div class="color-select-box" id="color-selectors-container"></div>
 
     <!-- Fast Shaking Dynamic Red CTA Button -->
     <button class="shaky-red-btn" onclick="openOrderModal()">
@@ -708,7 +697,7 @@
   const track = document.getElementById('carousel-track');
   const dotsContainer = document.getElementById('carousel-dots');
   const swatchesContainer = document.getElementById('swatches-grid');
-  const colorSelectorsContainer = document.getElementById('color-selectors-container');
+  const configContainer = document.getElementById('config-items-container');
 
   function initApp() {
     colorsData.forEach((col, idx) => {
@@ -749,26 +738,35 @@
       }
     }, { passive: true });
 
-    renderColorSelectors(1);
+    renderItemConfigs(1);
   }
 
-  function renderColorSelectors(qty) {
+  function renderItemConfigs(qty) {
     currentTierQty = qty;
-    colorSelectorsContainer.innerHTML = '';
+    configContainer.innerHTML = '';
 
     for (let i = 1; i <= qty; i++) {
-      const group = document.createElement('div');
-      group.className = 'color-select-group';
+      const card = document.createElement('div');
+      card.className = 'config-item-card';
       
-      const label = document.createElement('label');
-      label.innerText = qty === 1 ? 'Color Seleccionado:' : `Color para Polo ${i}:`;
-      
-      const select = document.createElement('select');
-      select.className = 'color-dropdown';
-      select.id = `polo-color-${i}`;
-      
+      const title = document.createElement('div');
+      title.className = 'config-item-title';
+      title.innerText = qty === 1 ? 'Polo Seleccionado' : `Polo #${i}`;
+
+      const row = document.createElement('div');
+      row.className = 'config-row';
+
+      // Color column
+      const colColor = document.createElement('div');
+      colColor.className = 'config-col';
+      const labelColor = document.createElement('label');
+      labelColor.innerText = 'Color';
+      const selectColor = document.createElement('select');
+      selectColor.className = 'config-select';
+      selectColor.id = `item-color-${i}`;
+
       if (i === 1) {
-        select.onchange = function() {
+        selectColor.onchange = function() {
           const selectedIdx = colorsData.findIndex(c => c.name === this.value);
           if (selectedIdx !== -1) goToSlide(selectedIdx);
         };
@@ -781,12 +779,36 @@
         if (i === 1 && idx === currentIndex) opt.selected = true;
         if (i === 2 && idx === (currentIndex + 1) % colorsData.length) opt.selected = true;
         if (i === 3 && idx === (currentIndex + 2) % colorsData.length) opt.selected = true;
-        select.appendChild(opt);
+        selectColor.appendChild(opt);
       });
 
-      group.appendChild(label);
-      group.appendChild(select);
-      colorSelectorsContainer.appendChild(group);
+      colColor.appendChild(labelColor);
+      colColor.appendChild(selectColor);
+
+      // Size column
+      const colSize = document.createElement('div');
+      colSize.className = 'config-col';
+      const labelSize = document.createElement('label');
+      labelSize.innerText = 'Talla';
+      const selectSize = document.createElement('select');
+      selectSize.className = 'config-select';
+      selectSize.id = `item-size-${i}`;
+
+      ['S', 'M', 'L'].forEach(sz => {
+        const optSz = document.createElement('option');
+        optSz.value = sz;
+        optSz.innerText = sz;
+        selectSize.appendChild(optSz);
+      });
+
+      colSize.appendChild(labelSize);
+      colSize.appendChild(selectSize);
+
+      row.appendChild(colColor);
+      row.appendChild(colSize);
+      card.appendChild(title);
+      card.appendChild(row);
+      configContainer.appendChild(card);
     }
   }
 
@@ -817,7 +839,7 @@
     const radios = document.querySelectorAll('input[name="color_swatch"]');
     if (radios[index]) radios[index].checked = true;
 
-    const firstDropdown = document.getElementById('polo-color-1');
+    const firstDropdown = document.getElementById('item-color-1');
     if (firstDropdown) firstDropdown.value = colorsData[index].name;
   }
 
@@ -848,31 +870,30 @@
   function updateTier(qty, price) {
     currentTierPrice = price;
     document.getElementById('cta-price-subtext').innerText = `Pagas $${price.toLocaleString('es-CO')} COP al recibir en casa`;
-    renderColorSelectors(qty);
+    renderItemConfigs(qty);
   }
 
-  function getSelectedColors() {
+  function getSelectedItems() {
     let list = [];
     for (let i = 1; i <= currentTierQty; i++) {
-      const drop = document.getElementById(`polo-color-${i}`);
-      if (drop) list.push(drop.value);
+      const color = document.getElementById(`item-color-${i}`).value;
+      const size = document.getElementById(`item-size-${i}`).value;
+      list.push(`${color} (Talla ${size})`);
     }
     return list;
   }
 
   function openOrderModal() {
-    const talla = document.querySelector('input[name="talla"]:checked').value;
-    const colors = getSelectedColors();
+    const items = getSelectedItems();
     const formattedPrice = '$' + currentTierPrice.toLocaleString('es-CO') + ' COP';
 
-    document.getElementById('modalSummary').innerHTML = `
-      <strong>Resumen de tu pedido:</strong><br>
-      • <strong>Cantidad:</strong> ${currentTierQty} Polo(s) (${formattedPrice})<br>
-      • <strong>Talla:</strong> ${talla}<br>
-      • <strong>Colores:</strong> ${colors.join(', ')}<br>
-      • <strong>Envío:</strong> Gratis (Pago Contra Entrega)
-    `;
+    let summaryHtml = `<strong>Resumen de tu pedido:</strong><br>• <strong>Promoción:</strong> ${currentTierQty} Polo(s) (${formattedPrice})<br>• <strong>Detalle:</strong><br>`;
+    items.forEach((item, idx) => {
+      summaryHtml += `&nbsp;&nbsp;- Polo ${idx+1}: ${item}<br>`;
+    });
+    summaryHtml += `• <strong>Envío:</strong> Gratis (Pago Contra Entrega)`;
 
+    document.getElementById('modalSummary').innerHTML = summaryHtml;
     document.getElementById('orderModal').style.display = 'flex';
   }
 
@@ -886,8 +907,7 @@
     submitBtn.innerText = "PROCESANDO PEDIDO...";
     submitBtn.disabled = true;
 
-    const talla = document.querySelector('input[name="talla"]:checked').value;
-    const colors = getSelectedColors();
+    const items = getSelectedItems();
     const formattedPrice = '$' + currentTierPrice.toLocaleString('es-CO') + ' COP';
 
     const orderPayload = {
@@ -900,8 +920,7 @@
       notas: document.getElementById('cust_notes').value || 'Sin observaciones',
       paquete: `${currentTierQty} Polo(s)`,
       valor_a_cobrar: formattedPrice,
-      talla: talla,
-      colores: colors.join(', ')
+      detalles_productos: items.join(', ')
     };
 
     try {
@@ -914,6 +933,11 @@
       console.warn("Automation webhook logged:", err);
     }
 
+    let waItemsText = "";
+    items.forEach((it, idx) => {
+      waItemsText += `• Polo ${idx+1}: ${it}\n`;
+    });
+
     const waText = `📦 *NUEVO PEDIDO CONTRA ENTREGA - SEGUTEX*\n\n` +
       `👤 *Cliente:* ${orderPayload.nombre}\n` +
       `📞 *Teléfono:* ${orderPayload.telefono}\n` +
@@ -922,9 +946,8 @@
       `🏠 *Dirección:* ${orderPayload.direccion}\n` +
       `📝 *Notas:* ${orderPayload.notas}\n\n` +
       `🛍️ *Detalle del Pedido:*\n` +
-      `• Cantidad: ${orderPayload.paquete}\n` +
-      `• Talla: ${orderPayload.talla}\n` +
-      `• Colores: ${orderPayload.colores}\n` +
+      `• Promoción: ${orderPayload.paquete}\n` +
+      waItemsText +
       `💰 *Total a Cobrar:* ${orderPayload.valor_a_cobrar} (Envío Gratis)`;
 
     window.open(`https://wa.me/${BUSINESS_PHONE}?text=${encodeURIComponent(waText)}`, '_blank');
