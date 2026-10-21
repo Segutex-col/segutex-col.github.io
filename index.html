@@ -680,6 +680,7 @@
     "Córdoba": ["Montería", "Lorica", "Cereté", "Sahagún", "Tierralta", "Montelíbano", "Planeta Rica", "Ciénaga de Oro", "Other / Otro"],
     "Cundinamarca": ["Soacha", "Facatativá", "Fusagasugá", "Chía", "Zipaquirá", "Girardot", "Mosquera", "Madrid", "Funza", "Cajicá", "Sopó", "Tabio", "Tenjo", "Tocancipá", "Cota", "Other / Otro"],
     "Huila": ["Neiva", "Pitalito", "Garzón", "La Plata", "Campoalegre", "San Agustín", "Palermo", "Gigante", "Other / Otro"],
+    "La Guajira": ["Riohacha", "Maicao", "Uribia", "Manaure", "San Juan del Cesar", "Fonseca", "Other / Otro"],
     "Magdalena": ["Santa Marta", "Ciénaga", "Fundación", "Plato", "El Banco", "Aracataca", "Other / Otro"],
     "Meta": ["Villavicencio", "Acacías", "Granada", "Puerto López", "San Martín", "Cumaral", "Other / Otro"],
     "Nariño": ["Pasto", "Tumaco", "Ipiales", "Samaniego", "Túquerres", "La Unión", "Other / Otro"],
@@ -693,7 +694,6 @@
   };
 
   const WEBHOOK_URL = "https://hook.us2.make.com/jdpmgi4gu4ao4kyz0oqdq4qnpc1dch1z"; 
-  const BUSINESS_PHONE = "573202838796";
 
   let currentIndex = 0;
   let currentTierQty = 1;
@@ -928,26 +928,7 @@
       console.warn("Automation webhook logged:", err);
     }
 
-    let waItemsText = "";
-    items.forEach((it, idx) => {
-      waItemsText += `• Polo ${idx+1}: ${it}\n`;
-    });
-
-    const waText = `📦 *NUEVO PEDIDO CONTRA ENTREGA - SEGUTEX*\n\n` +
-      `👤 *Cliente:* ${orderPayload.nombre}\n` +
-      `📞 *Teléfono:* ${orderPayload.telefono}\n` +
-      `📧 *Email:* ${orderPayload.email}\n` +
-      `📍 *Destino:* ${orderPayload.ciudad}, ${orderPayload.departamento}\n` +
-      `🏠 *Dirección:* ${orderPayload.direccion}\n` +
-      `📝 *Notas:* ${orderPayload.notas}\n\n` +
-      `🛍️ *Detalle del Pedido:*\n` +
-      `• Promoción: ${orderPayload.paquete}\n` +
-      waItemsText +
-      `💰 *Total a Cobrar:* ${orderPayload.valor_a_cobrar} (Envío Gratis)`;
-
-    window.open(`https://wa.me/${BUSINESS_PHONE}?text=${encodeURIComponent(waText)}`, '_blank');
-
-    alert("¡Pedido recibido con éxito! Procederemos con el despacho a tu dirección.");
+    alert("¡Pedido recibido con éxito! Nos pondremos en contacto contigo para confirmar el despacho.");
     closeOrderModal();
     submitBtn.innerText = "CONFIRMAR PEDIDO CONTRA ENTREGA";
     submitBtn.disabled = false;
