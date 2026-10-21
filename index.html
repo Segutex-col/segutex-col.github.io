@@ -26,17 +26,19 @@
       background: #000000;
       color: #FFFFFF;
       text-align: center;
-      padding: 0 0 20px 0; /* Removed side padding so logo hits edges */
+      padding: 16px 16px 20px 16px; /* Restored clean banner padding */
       display: flex;
       flex-direction: column;
       align-items: center;
     }
     .brand-logo-img {
-      width: 100%;
-      height: auto; /* Scales naturally based on width */
+      width: auto;
+      max-width: 100%;
+      height: 75px; /* Keeps it short and compact */
       display: block;
       object-fit: contain;
-      margin-bottom: 12px;
+      object-position: center;
+      margin: 0 auto 12px auto;
     }
     .brand-fallback-text {
       font-size: 18px;
