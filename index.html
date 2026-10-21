@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Polos Corporativos | Segutex Dotaciones</title>
+  <title>Camisetas Polo | Segutex Dotaciones</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -26,37 +26,38 @@
       background: #000000;
       color: #FFFFFF;
       text-align: center;
-      padding: 0 0 18px 0;
+      padding: 18px 16px 20px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
     .brand-logo-img {
       width: 100%;
-      max-width: 100%;
+      max-width: 220px;
       height: auto;
       display: block;
-      object-fit: cover;
-      margin-bottom: 12px;
+      object-fit: contain;
+      margin: 0 auto 12px auto;
     }
     .brand-fallback-text {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 800;
       letter-spacing: 2px;
       color: #FCD34D;
-      padding-top: 18px;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .hero-title {
       font-size: 24px;
       font-weight: 800;
-      margin-bottom: 4px;
-      padding: 0 16px;
+      margin-bottom: 6px;
+      padding: 0 8px;
     }
     .hero-subtitle {
       font-size: 13px;
-      color: #94A3B8;
-      padding: 0 16px;
+      line-height: 1.45;
+      color: #CBD5E1;
+      max-width: 420px;
+      padding: 0 8px;
     }
     .content-body {
       padding: 20px 16px;
@@ -316,10 +317,10 @@
 
 <div class="page-container">
   <div class="header-banner">
-    <img id="store-logo" src="logo.jpg" alt="Segutex Dotaciones" class="brand-logo-img" onerror="checkLogoFallback(this)">
+    <img id="store-logo" src="logo.png" alt="Segutex Dotaciones" class="brand-logo-img" onerror="checkLogoFallback(this)">
     <div id="fallback-logo-text" class="brand-fallback-text" style="display:none;">SEGUTEX DOTACIONES</div>
-    <h1 class="hero-title">Polos Corporativos</h1>
-    <p class="hero-subtitle">Confección y acabados de alta calidad para dotación empresarial</p>
+    <h1 class="hero-title">Camisetas Polo</h1>
+    <p class="hero-subtitle">Confeccionadas con la más alta calidad: ideales para uso personal, eventos o dotación corporativa</p>
   </div>
 
   <div class="content-body">
@@ -423,7 +424,7 @@
   ];
 
   // Her Colombian WhatsApp number (57 + 10 digits):
-  const businessPhone = "573202838796";
+  const businessPhone = "573XXXXXXXXX";
 
   let currentIndex = 0;
   let currentTierQty = 1;
@@ -492,7 +493,6 @@
       select.className = 'color-dropdown';
       select.id = `polo-color-${i}`;
       
-      // Auto-preview on carousel when dropdown 1 changes
       if (i === 1) {
         select.onchange = function() {
           const selectedIdx = colorsData.findIndex(c => c.name === this.value);
@@ -504,7 +504,6 @@
         const opt = document.createElement('option');
         opt.value = col.name;
         opt.innerText = col.name;
-        // Default color assignment
         if (i === 1 && idx === currentIndex) opt.selected = true;
         if (i === 2 && idx === (currentIndex + 1) % colorsData.length) opt.selected = true;
         if (i === 3 && idx === (currentIndex + 2) % colorsData.length) opt.selected = true;
@@ -527,7 +526,6 @@
     const radios = document.querySelectorAll('input[name="color_swatch"]');
     if (radios[index]) radios[index].checked = true;
 
-    // Sync dropdown 1 with current active slide
     const firstDropdown = document.getElementById('polo-color-1');
     if (firstDropdown) firstDropdown.value = colorsData[index].name;
   }
@@ -546,9 +544,9 @@
   }
 
   function checkLogoFallback(img) {
-    if (img.src.includes('logo.jpg')) {
-      img.src = 'logo.png';
-    } else if (img.src.includes('logo.png')) {
+    if (img.src.includes('logo.png')) {
+      img.src = 'logo.jpg';
+    } else if (img.src.includes('logo.jpg')) {
       img.src = 'logo.jpeg';
     } else {
       img.style.display = 'none';
