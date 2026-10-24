@@ -315,50 +315,6 @@
     .delivery-notice-box p { margin-bottom: 4px; }
     .delivery-notice-box p:last-child { margin-bottom: 0; }
 
-    /* Size Chart Section */
-    .size-guide-container {
-      margin-top: 24px;
-      padding: 20px 14px;
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      border-radius: 12px;
-      text-align: center;
-    }
-    .size-guide-title {
-      font-size: 17px;
-      font-weight: 800;
-      color: #0F172A;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .size-guide-table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 6px;
-      font-size: 13px;
-    }
-    .size-guide-table th, .size-guide-table td {
-      padding: 10px 6px;
-      border: 1.5px solid #CBD5E1;
-      border-radius: 6px;
-      background: #FFFFFF;
-    }
-    .size-guide-table th {
-      font-weight: 800;
-      background: #F1F5F9;
-      color: #1E293B;
-    }
-    .size-guide-table td {
-      color: #334155;
-    }
-    .size-guide-note {
-      font-size: 11px;
-      color: #64748B;
-      margin-top: 10px;
-      line-height: 1.4;
-    }
-
     /* Modal Overlay & Scroll Isolation Fixes */
     .modal-overlay {
       position: fixed;
@@ -494,6 +450,36 @@
       margin-top: 10px;
     }
 
+    /* Size Guide Table Style */
+    .size-guide-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 6px;
+      font-size: 13px;
+    }
+    .size-guide-table th, .size-guide-table td {
+      padding: 9px 6px;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 6px;
+      background: #FFFFFF;
+      text-align: center;
+    }
+    .size-guide-table th {
+      font-weight: 800;
+      background: #F1F5F9;
+      color: #1E293B;
+    }
+    .size-guide-table td {
+      color: #334155;
+    }
+    .size-guide-note {
+      font-size: 11px;
+      color: #64748B;
+      margin-top: 10px;
+      line-height: 1.4;
+      text-align: center;
+    }
+
     /* Footer Section */
     .site-footer {
       background: #000000;
@@ -532,8 +518,8 @@
       line-height: 1.5;
     }
 
-    /* Legal Content Overlay Card */
-    .legal-popup-overlay {
+    /* Pop-Up Modals (Size Chart & Legal) */
+    .center-modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
@@ -547,18 +533,18 @@
       align-items: center;
       padding: 16px;
     }
-    .legal-popup-card {
+    .center-modal-card {
       background: #FFFFFF;
       width: 100%;
       max-width: 420px;
-      max-height: 75vh;
+      max-height: 80vh;
       border-radius: 12px;
       padding: 22px 20px;
       position: relative;
       overflow-y: auto;
       box-shadow: 0 10px 25px rgba(0,0,0,0.25);
     }
-    .legal-close-btn {
+    .modal-close-icon {
       position: absolute;
       top: 12px;
       right: 12px;
@@ -572,13 +558,13 @@
       cursor: pointer;
       color: #475569;
     }
-    .legal-title {
+    .card-title {
       font-size: 16px;
       font-weight: 800;
       color: #0F172A;
       margin-bottom: 12px;
     }
-    .legal-content-body {
+    .card-body {
       font-size: 12.5px;
       line-height: 1.55;
       color: #475569;
@@ -673,53 +659,13 @@
       <p>• <strong>Envío Gratis:</strong> Entrega estimada de 4 a 5 días hábiles según municipio.</p>
       <p>• <strong>Pago Contra Entrega:</strong> Ten listo el valor en efectivo o transferencia al recibir tu paquete.</p>
     </div>
-
-    <!-- Guía de Tallaje Section -->
-    <div class="size-guide-container" id="guia-tallas">
-      <div class="size-guide-title">Guía De Tallaje</div>
-      <table class="size-guide-table">
-        <thead>
-          <tr>
-            <th>Talla</th>
-            <th>Pecho</th>
-            <th>Largo</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>S</strong></td>
-            <td>48 - 50 cm</td>
-            <td>68 - 70 cm</td>
-          </tr>
-          <tr>
-            <td><strong>M</strong></td>
-            <td>51 - 53 cm</td>
-            <td>70 - 72 cm</td>
-          </tr>
-          <tr>
-            <td><strong>L</strong></td>
-            <td>54 - 56 cm</td>
-            <td>72 - 74 cm</td>
-          </tr>
-          <tr>
-            <td><strong>XL</strong></td>
-            <td>57 - 60 cm</td>
-            <td>74 - 76 cm</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="size-guide-note">
-        * Medidas tomadas en plano de costura a costura. Confección prémium nacional.
-      </div>
-    </div>
-
   </div>
 
   <!-- Footer Section -->
   <footer class="site-footer">
     <div class="footer-title">Enlaces rápidos</div>
     <ul class="footer-nav-list">
-      <li><a href="#guia-tallas">¿Cuál es mi Talla?</a></li>
+      <li><a onclick="openSizeModal()">¿Cuál es mi Talla?</a></li>
       <li><a href="https://wa.me/573202838796" target="_blank" rel="noopener noreferrer">Atención al Cliente WhatsApp</a></li>
       <li><a onclick="openLegalModal('terminos')">Términos y Condiciones</a></li>
       <li><a onclick="openLegalModal('privacidad')">Política de privacidad</a></li>
@@ -844,12 +790,54 @@
   </div>
 </div>
 
+<!-- Modal Pop-Up Size Guide -->
+<div class="center-modal-overlay" id="sizeModal">
+  <div class="center-modal-card">
+    <button class="modal-close-icon" onclick="closeSizeModal()">&times;</button>
+    <div class="card-title" style="text-align: center; margin-bottom: 14px;">Guía De Tallaje (Polos)</div>
+    <table class="size-guide-table">
+      <thead>
+        <tr>
+          <th>Talla</th>
+          <th>Pecho</th>
+          <th>Largo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>S</strong></td>
+          <td>48 - 50 cm</td>
+          <td>68 - 70 cm</td>
+        </tr>
+        <tr>
+          <td><strong>M</strong></td>
+          <td>51 - 53 cm</td>
+          <td>70 - 72 cm</td>
+        </tr>
+        <tr>
+          <td><strong>L</strong></td>
+          <td>54 - 56 cm</td>
+          <td>72 - 74 cm</td>
+        </tr>
+        <tr>
+          <td><strong>XL</strong></td>
+          <td>57 - 60 cm</td>
+          <td>74 - 76 cm</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="size-guide-note">
+      * Medidas tomadas sobre prenda plana de costura a costura. Confección prémium nacional.
+    </div>
+  </div>
+</div>
+
 <!-- Modal Pop-Up Legal Content -->
-<div class="legal-popup-overlay" id="legalModal">
-  <div class="legal-popup-card">
-    <button class="legal-close-btn" onclick="closeLegalModal()">&times;</button>
-    <div class="legal-title" id="legalModalTitle"></div>
-    <div class="legal-content-body" id="legalModalBody"></div>
+<div class="center-modal-overlay" id="legalModal">
+  <div class="center-modal-card">
+    <button class="modal-close-icon" onclick="closeLegalModal()">&times;</button>
+    <div class="card-title" id="legalModalTitle"></div>
+    <div class="card-body" id="legalModalBody"></div>
   </div>
 </div>
 
@@ -990,11 +978,13 @@
       labelSize.innerText = 'Talla';
       
       const sizeGuideLink = document.createElement('a');
-      sizeGuideLink.href = '#guia-tallas';
-      sizeGuideLink.innerText = '¿Talla?';
+      sizeGuideLink.href = 'javascript:void(0)';
+      sizeGuideLink.innerText = '¿Cuál es mi Talla?';
       sizeGuideLink.style.fontSize = '10px';
       sizeGuideLink.style.color = '#DC2626';
       sizeGuideLink.style.textDecoration = 'underline';
+      sizeGuideLink.style.cursor = 'pointer';
+      sizeGuideLink.onclick = openSizeModal;
 
       sizeHeaderBox.appendChild(labelSize);
       sizeHeaderBox.appendChild(sizeGuideLink);
@@ -1111,6 +1101,17 @@
 
   function closeOrderModal() {
     document.getElementById('orderModal').style.display = 'none';
+    document.body.classList.remove('modal-open');
+  }
+
+  /* Size Guide Modal Controller */
+  function openSizeModal() {
+    document.getElementById('sizeModal').style.display = 'flex';
+    document.body.classList.add('modal-open');
+  }
+
+  function closeSizeModal() {
+    document.getElementById('sizeModal').style.display = 'none';
     document.body.classList.remove('modal-open');
   }
 
