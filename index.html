@@ -52,7 +52,7 @@
       margin-top: 2px;
     }
 
-    /* Product Title & Callout */
+    /* Product Title */
     .product-headline {
       padding: 16px 16px 8px;
       text-align: center;
@@ -151,7 +151,25 @@
       margin-bottom: 16px;
     }
 
-    /* Order Form */
+    /* Key Benefits Grid */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 12px 16px 20px;
+      text-align: center;
+    }
+    .benefit-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 6px;
+    }
+    .benefit-icon { font-size: 20px; margin-bottom: 4px; }
+    .benefit-title { font-size: 11px; font-weight: 700; color: #0f172a; }
+    .benefit-sub { font-size: 10px; color: #64748b; }
+
+    /* Form Container */
     .form-wrapper {
       padding: 0 16px 24px;
     }
@@ -193,35 +211,12 @@
       border-radius: 4px;
       text-transform: uppercase;
     }
-    .badge-popular {
-      background-color: #3b82f6;
-      color: white;
-    }
-    .badge-best {
-      background-color: #10b981;
-      color: white;
-    }
-    .tier-info-title {
-      font-weight: 700;
-      font-size: 14px;
-      color: #111827;
-    }
-    .tier-info-sub {
-      font-size: 11px;
-      color: #6b7280;
-    }
-    .tier-price-val {
-      font-weight: 800;
-      font-size: 16px;
-      color: #111827;
-      text-align: right;
-    }
-    .tier-savings {
-      font-size: 11px;
-      font-weight: 700;
-      color: #10b981;
-      text-align: right;
-    }
+    .badge-popular { background-color: #3b82f6; color: white; }
+    .badge-best { background-color: #10b981; color: white; }
+    .tier-info-title { font-weight: 700; font-size: 14px; color: #111827; }
+    .tier-info-sub { font-size: 11px; color: #6b7280; }
+    .tier-price-val { font-weight: 800; font-size: 16px; color: #111827; text-align: right; }
+    .tier-savings { font-size: 11px; font-weight: 700; color: #10b981; text-align: right; }
 
     /* Variant Selectors */
     .variant-card {
@@ -259,14 +254,10 @@
       background-color: #ffffff;
       outline: none;
     }
-    select:focus, input:focus {
-      border-color: #ef4444;
-    }
+    select:focus, input:focus { border-color: #ef4444; }
 
-    /* Customer Details Fields */
-    .form-group {
-      margin-bottom: 12px;
-    }
+    /* Form Fields */
+    .form-group { margin-bottom: 12px; }
     .form-group label {
       display: block;
       font-size: 12px;
@@ -308,7 +299,7 @@
       text-transform: none;
     }
 
-    /* Trust Info */
+    /* Trust Box */
     .trust-box {
       margin-top: 14px;
       background: #fdf2f2;
@@ -317,9 +308,6 @@
       font-size: 12px;
       color: #4b5563;
       line-height: 1.5;
-    }
-    .trust-box strong {
-      color: #111827;
     }
 
     /* Size Chart Section */
@@ -386,6 +374,11 @@
       text-decoration: underline;
       text-underline-offset: 3px;
     }
+    .footer-links a.legal-link {
+      color: #d1d5db;
+      text-decoration: underline;
+      cursor: pointer;
+    }
     .newsletter-row {
       display: flex;
       border: 1px solid #374151;
@@ -417,13 +410,53 @@
       color: #6b7280;
       line-height: 1.5;
     }
+
+    /* Legal Popup Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
+    .modal-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 440px;
+      max-height: 80vh;
+      border-radius: 12px;
+      padding: 24px;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: #e5e7eb;
+      border: none;
+      font-size: 16px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
+      color: #374151;
+    }
   </style>
 </head>
 <body>
 
 <div class="mobile-container">
   
-  <!-- Encabezado / Branding -->
+  <!-- Branding Header -->
   <header>
     <div class="brand-title">
       <span>🛡️</span> SEGUTEX
@@ -431,7 +464,7 @@
     <div class="sub-brand">DOTACIONES CORPORATIVAS</div>
   </header>
 
-  <!-- Titular y Oferta -->
+  <!-- Title & Headline -->
   <div class="product-headline">
     <h1>Camisetas Polo Clásicas</h1>
     <p>Confeccionadas con piqué prémium de alta resistencia y durabilidad para dotación o uso diario.</p>
@@ -442,7 +475,7 @@
     <span><strong>¡OFERTA ACTIVA!</strong> Envío sin costo adicional a toda Colombia.</span>
   </div>
 
-  <!-- Galería / Carrusel -->
+  <!-- Image Carousel -->
   <div class="carousel-container">
     <div class="carousel-slides" id="carouselSlides">
       <div class="carousel-slide">
@@ -465,11 +498,30 @@
   </div>
   <div class="color-label" id="colorLabel">Color mostrado: Negro</div>
 
-  <!-- Formulario de Compra Contra Entrega -->
+  <!-- Key Benefits Grid -->
+  <div class="benefits-grid">
+    <div class="benefit-item">
+      <div class="benefit-icon">🚚</div>
+      <div class="benefit-title">Envío Gratis</div>
+      <div class="benefit-sub">Nacional 100%</div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">💵</div>
+      <div class="benefit-title">Contra Entrega</div>
+      <div class="benefit-sub">Pagas al recibir</div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">🔄</div>
+      <div class="benefit-title">Cambio Fácil</div>
+      <div class="benefit-sub">Garantía de talla</div>
+    </div>
+  </div>
+
+  <!-- Order Form -->
   <div class="form-wrapper" id="orden">
     <form id="orderForm">
 
-      <!-- PASO 1: Paquetes / Promociones -->
+      <!-- STEP 1: Bundles / Pricing Tiers -->
       <div class="section-step">
         <div class="step-header">1. Elige tu promoción</div>
 
@@ -506,15 +558,15 @@
         </div>
       </div>
 
-      <!-- PASO 2: Selección de Talla y Color -->
+      <!-- STEP 2: Variant Selectors with Inline Size Guide Link -->
       <div class="section-step">
         <div class="step-header">2. Elige color y talla por polo</div>
         <div id="variantSelectorsContainer">
-          <!-- Inyectado dinámicamente por JavaScript -->
+          <!-- Populated by JavaScript -->
         </div>
       </div>
 
-      <!-- PASO 3: Datos de Envío -->
+      <!-- STEP 3: Customer Logistics Information -->
       <div class="section-step">
         <div class="step-header">3. Datos de envío y entrega</div>
 
@@ -565,13 +617,13 @@
         </div>
       </div>
 
-      <!-- Botón de Envío -->
+      <!-- Submit Order Button -->
       <button type="submit" class="btn-submit" id="submitBtn">
         <span>🛍️ PEDIR CONTRA ENTREGA</span>
         <span class="btn-subtext" id="btnPriceText">Pagas $55.000 COP al recibir en casa</span>
       </button>
 
-      <!-- Garantía de Entrega -->
+      <!-- Trust Note -->
       <div class="trust-box">
         <p>• <strong>Envío Gratis:</strong> Entrega estimada de 3 a 5 días hábiles a nivel nacional.</p>
         <p style="margin-top: 4px;">• <strong>Pago Contra Entrega:</strong> Ten listo el valor en efectivo o transferencia bancaria al recibir tu paquete.</p>
@@ -580,7 +632,7 @@
     </form>
   </div>
 
-  <!-- SECCIÓN GUÍA DE TALLAJE -->
+  <!-- Size Chart Section -->
   <section class="size-guide-section" id="guia-tallas">
     <h2>Guía De Tallaje</h2>
     <table class="size-table">
@@ -619,17 +671,17 @@
     </div>
   </section>
 
-  <!-- FOOTER CON ENLACES RÁPIDOS -->
+  <!-- Footer with Active Legal Modal Triggers -->
   <footer>
     <h3>Enlaces rápidos</h3>
     <ul class="footer-links">
       <li><a href="#guia-tallas" class="active-link">¿Cuál es mi Talla?</a></li>
       <li><a href="#orden">Hacer Pedido Contra Entrega</a></li>
       <li><a href="https://wa.me/573202838796" target="_blank" rel="noopener noreferrer">Atención al Cliente WhatsApp</a></li>
-      <li style="color: #9ca3af;">Términos Y Condiciones</li>
-      <li style="color: #9ca3af;">Política de privacidad</li>
-      <li style="color: #9ca3af;">Política de reembolso</li>
-      <li style="color: #9ca3af;">Política de envío</li>
+      <li><a href="javascript:void(0)" onclick="openLegalModal('terminos')" class="legal-link">Términos y Condiciones</a></li>
+      <li><a href="javascript:void(0)" onclick="openLegalModal('privacidad')" class="legal-link">Política de privacidad</a></li>
+      <li><a href="javascript:void(0)" onclick="openLegalModal('reembolso')" class="legal-link">Política de reembolso</a></li>
+      <li><a href="javascript:void(0)" onclick="openLegalModal('envio')" class="legal-link">Política de envío</a></li>
     </ul>
 
     <div class="newsletter-row">
@@ -645,9 +697,17 @@
 
 </div>
 
-<!-- LÓGICA JAVASCRIPT: CARRUSEL, PROMOCIONES Y WEBHOOK MAKE.COM -->
+<!-- Legal Policy Popup Modal -->
+<div id="legalModal" class="modal-overlay">
+  <div class="modal-card">
+    <button onclick="closeLegalModal()" class="modal-close-btn">✕</button>
+    <h3 id="legalModalTitle" style="font-size: 18px; font-weight: 800; color: #111827; margin-bottom: 12px;"></h3>
+    <div id="legalModalBody" style="font-size: 13px; color: #4b5563; line-height: 1.6;"></div>
+  </div>
+</div>
+
 <script>
-  // 1. Estado Global de Pedido
+  // 1. Order State
   let currentTierQuantity = 1;
   let currentTierTotal = 55000;
 
@@ -660,30 +720,25 @@
     activeSlide = (activeSlide + direction + totalSlides) % totalSlides;
     slidesContainer.style.transform = `translateX(-${activeSlide * 100}%)`;
 
-    // Actualizar puntos y label
     document.querySelectorAll('.carousel-dots .dot').forEach((dot, index) => {
       dot.className = index === activeSlide ? 'dot active' : 'dot';
     });
     document.getElementById('colorLabel').textContent = `Color mostrado: ${colorNames[activeSlide]}`;
   }
 
-  // 2. Manejo de Tiers / Promociones
+  // 2. Promotion Bundle Selection
   function selectTier(quantity, total, element) {
     currentTierQuantity = quantity;
     currentTierTotal = total;
 
-    // Actualizar estilo visual
     document.querySelectorAll('.tier-card').forEach(card => card.classList.remove('selected'));
     element.classList.add('selected');
 
-    // Actualizar texto del botón de pedido
     document.getElementById('btnPriceText').textContent = `Pagas $${total.toLocaleString('es-CO')} COP al recibir en casa`;
-
-    // Re-renderizar selectores por cada prenda
     renderVariantSelectors();
   }
 
-  // 3. Render Dinámico de Talla y Color con Link a Guía de Tallas
+  // 3. Render Variant Selectors with Inline Size Link
   function renderVariantSelectors() {
     const container = document.getElementById('variantSelectorsContainer');
     container.innerHTML = '';
@@ -719,11 +774,9 @@
       container.appendChild(card);
     }
   }
-
-  // Inicializar selectores en la carga
   renderVariantSelectors();
 
-  // 4. Ciudades según Departamento
+  // 4. City Selectors Mapped by Department
   const municipiosMap = {
     "Antioquia": ["Medellín", "Bello", "Envigado", "Itagüí", "Rionegro"],
     "Bogotá D.C.": ["Bogotá D.C."],
@@ -749,7 +802,39 @@
     }
   }
 
-  // 5. Envío de Formulario al Webhook de Make.com
+  // 5. Legal Modal Content & Logic
+  const legalTexts = {
+    terminos: {
+      title: "Términos y Condiciones",
+      body: "<p>Al solicitar prendas en Segutex Dotaciones bajo la modalidad de <strong>Pago Contra Entrega</strong>, el comprador se compromete a recibir y cancelar el monto acordado al transportista al momento de la entrega física. Todos los pedidos están sujetos a verificación de datos previa al despacho nacional.</p>"
+    },
+    privacidad: {
+      title: "Política de Privacidad",
+      body: "<p>Los datos suministrados (nombre, número de contacto, correo y dirección de entrega) son utilizados exclusivamente por Segutex Dotaciones para la logística de despacho, facturación y confirmación de pedidos vía WhatsApp. No comercializamos ni transferimos tus datos a terceros.</p>"
+    },
+    reembolso: {
+      title: "Política de Reembolso y Cambios",
+      body: "<p>Ofrecemos garantía directa por defectos de confección o discrepancias en la talla solicitada. Dispones de 5 días hábiles a partir de la recepción del paquete para solicitar cambio. Las prendas deben entregarse limpias, sin uso y con sus etiquetas correspondientes.</p>"
+    },
+    envio: {
+      title: "Política de Envío Nacional",
+      body: "<p>Realizamos envíos a cobertura nacional a través de transportadoras aliadas (Coordinadora, Inter Rapidísimo, Servientrega). Los plazos promedio de entrega son de 2 a 4 días hábiles para ciudades principales y de 3 a 5 días hábiles para el resto del territorio colombiano.</p>"
+    }
+  };
+
+  function openLegalModal(type) {
+    if (legalTexts[type]) {
+      document.getElementById('legalModalTitle').textContent = legalTexts[type].title;
+      document.getElementById('legalModalBody').innerHTML = legalTexts[type].body;
+      document.getElementById('legalModal').style.display = 'flex';
+    }
+  }
+
+  function closeLegalModal() {
+    document.getElementById('legalModal').style.display = 'none';
+  }
+
+  // 6. Form Submission via Make.com Webhook
   document.getElementById('orderForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
@@ -757,7 +842,6 @@
     submitBtn.disabled = true;
     submitBtn.querySelector('span').textContent = 'PROCESANDO PEDIDO...';
 
-    // Compilar items seleccionados
     const colors = Array.from(document.querySelectorAll('.variant-color-input')).map(el => el.value);
     const sizes = Array.from(document.querySelectorAll('.variant-size-input')).map(el => el.value);
     
@@ -781,14 +865,11 @@
     };
 
     try {
-      // Endpoint verificado de Make.com
       const webhookUrl = 'https://hook.us2.make.com/jdpmgi4gu4ao4kyz0oqdq4qnpc1dch1z';
 
       const res = await fetch(webhookUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
 
