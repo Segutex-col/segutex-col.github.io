@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Camisetas Polo | Segutex Dotaciones</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: #F1F5F9;
@@ -315,6 +315,50 @@
     .delivery-notice-box p { margin-bottom: 4px; }
     .delivery-notice-box p:last-child { margin-bottom: 0; }
 
+    /* Size Chart Section */
+    .size-guide-container {
+      margin-top: 24px;
+      padding: 20px 14px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .size-guide-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .size-guide-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 6px;
+      font-size: 13px;
+    }
+    .size-guide-table th, .size-guide-table td {
+      padding: 10px 6px;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 6px;
+      background: #FFFFFF;
+    }
+    .size-guide-table th {
+      font-weight: 800;
+      background: #F1F5F9;
+      color: #1E293B;
+    }
+    .size-guide-table td {
+      color: #334155;
+    }
+    .size-guide-note {
+      font-size: 11px;
+      color: #64748B;
+      margin-top: 10px;
+      line-height: 1.4;
+    }
+
     /* Modal Overlay & Scroll Isolation Fixes */
     .modal-overlay {
       position: fixed;
@@ -449,6 +493,96 @@
       color: #64748B;
       margin-top: 10px;
     }
+
+    /* Footer Section */
+    .site-footer {
+      background: #000000;
+      color: #FFFFFF;
+      padding: 32px 18px 24px;
+      border-top: 1px solid #1E293B;
+    }
+    .footer-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #F8FAFC;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .footer-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 22px 0;
+      line-height: 2.3;
+      font-size: 13px;
+    }
+    .footer-nav-list a {
+      color: #94A3B8;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .footer-nav-list a:hover {
+      color: #FFFFFF;
+    }
+    .footer-copyright {
+      border-top: 1px solid #1E293B;
+      padding-top: 16px;
+      font-size: 11px;
+      color: #64748B;
+      line-height: 1.5;
+    }
+
+    /* Legal Content Overlay Card */
+    .legal-popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
+    .legal-popup-card {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 420px;
+      max-height: 75vh;
+      border-radius: 12px;
+      padding: 22px 20px;
+      position: relative;
+      overflow-y: auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+    .legal-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #F1F5F9;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      color: #475569;
+    }
+    .legal-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 12px;
+    }
+    .legal-content-body {
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: #475569;
+    }
   </style>
 </head>
 <body>
@@ -539,7 +673,64 @@
       <p>• <strong>Envío Gratis:</strong> Entrega estimada de 4 a 5 días hábiles según municipio.</p>
       <p>• <strong>Pago Contra Entrega:</strong> Ten listo el valor en efectivo o transferencia al recibir tu paquete.</p>
     </div>
+
+    <!-- Guía de Tallaje Section -->
+    <div class="size-guide-container" id="guia-tallas">
+      <div class="size-guide-title">Guía De Tallaje</div>
+      <table class="size-guide-table">
+        <thead>
+          <tr>
+            <th>Talla</th>
+            <th>Pecho</th>
+            <th>Largo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>S</strong></td>
+            <td>48 - 50 cm</td>
+            <td>68 - 70 cm</td>
+          </tr>
+          <tr>
+            <td><strong>M</strong></td>
+            <td>51 - 53 cm</td>
+            <td>70 - 72 cm</td>
+          </tr>
+          <tr>
+            <td><strong>L</strong></td>
+            <td>54 - 56 cm</td>
+            <td>72 - 74 cm</td>
+          </tr>
+          <tr>
+            <td><strong>XL</strong></td>
+            <td>57 - 60 cm</td>
+            <td>74 - 76 cm</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="size-guide-note">
+        * Medidas tomadas en plano de costura a costura. Confección prémium nacional.
+      </div>
+    </div>
+
   </div>
+
+  <!-- Footer Section -->
+  <footer class="site-footer">
+    <div class="footer-title">Enlaces rápidos</div>
+    <ul class="footer-nav-list">
+      <li><a href="#guia-tallas">¿Cuál es mi Talla?</a></li>
+      <li><a href="https://wa.me/573202838796" target="_blank" rel="noopener noreferrer">Atención al Cliente WhatsApp</a></li>
+      <li><a onclick="openLegalModal('terminos')">Términos y Condiciones</a></li>
+      <li><a onclick="openLegalModal('privacidad')">Política de privacidad</a></li>
+      <li><a onclick="openLegalModal('reembolso')">Política de reembolso</a></li>
+      <li><a onclick="openLegalModal('envio')">Política de envío</a></li>
+    </ul>
+    <div class="footer-copyright">
+      <p style="margin-bottom: 4px;">© 2026 Segutex Dotaciones. Todos los derechos reservados.</p>
+      <p>Confección y distribución nacional de dotación y uniformes corporativos.</p>
+    </div>
+  </footer>
 </div>
 
 <!-- Modal Pop-Up Order Form -->
@@ -650,6 +841,15 @@
         🔒 Datos protegidos. Despacho nacional asegurado.
       </div>
     </form>
+  </div>
+</div>
+
+<!-- Modal Pop-Up Legal Content -->
+<div class="legal-popup-overlay" id="legalModal">
+  <div class="legal-popup-card">
+    <button class="legal-close-btn" onclick="closeLegalModal()">&times;</button>
+    <div class="legal-title" id="legalModalTitle"></div>
+    <div class="legal-content-body" id="legalModalBody"></div>
   </div>
 </div>
 
@@ -780,20 +980,38 @@
 
       const colSize = document.createElement('div');
       colSize.className = 'config-col';
+      
+      const sizeHeaderBox = document.createElement('div');
+      sizeHeaderBox.style.display = 'flex';
+      sizeHeaderBox.style.justifyContent = 'space-between';
+      sizeHeaderBox.style.alignItems = 'center';
+
       const labelSize = document.createElement('label');
       labelSize.innerText = 'Talla';
+      
+      const sizeGuideLink = document.createElement('a');
+      sizeGuideLink.href = '#guia-tallas';
+      sizeGuideLink.innerText = '¿Talla?';
+      sizeGuideLink.style.fontSize = '10px';
+      sizeGuideLink.style.color = '#DC2626';
+      sizeGuideLink.style.textDecoration = 'underline';
+
+      sizeHeaderBox.appendChild(labelSize);
+      sizeHeaderBox.appendChild(sizeGuideLink);
+
       const selectSize = document.createElement('select');
       selectSize.className = 'config-select';
       selectSize.id = `item-size-${i}`;
 
-      ['S', 'M', 'L'].forEach(sz => {
+      ['S', 'M', 'L', 'XL'].forEach(sz => {
         const optSz = document.createElement('option');
         optSz.value = sz;
         optSz.innerText = sz;
+        if (sz === 'M') optSz.selected = true;
         selectSize.appendChild(optSz);
       });
 
-      colSize.appendChild(labelSize);
+      colSize.appendChild(sizeHeaderBox);
       colSize.appendChild(selectSize);
 
       row.appendChild(colColor);
@@ -893,6 +1111,40 @@
 
   function closeOrderModal() {
     document.getElementById('orderModal').style.display = 'none';
+    document.body.classList.remove('modal-open');
+  }
+
+  /* Legal Modal Controller */
+  const legalDocs = {
+    terminos: {
+      title: "Términos y Condiciones",
+      body: "<p>Al solicitar prendas en Segutex Dotaciones bajo la modalidad de <strong>Pago Contra Entrega</strong>, el comprador se compromete a recibir el paquete y cancelar el valor acordado en efectivo o transferencia a la transportadora al momento de la entrega física.</p><p style='margin-top:8px;'>Todos los despachos pasan por un proceso previo de validación telefónica o vía WhatsApp para asegurar la veracidad de la dirección y disponibilidad del destinatario.</p>"
+    },
+    privacidad: {
+      title: "Política de Privacidad",
+      body: "<p>En cumplimiento con las directrices de protección de datos en Colombia (Ley 1581 de 2012), los datos personales suministrados (nombre, teléfono, correo electrónico y dirección) se utilizan con el único propósito de despachar los pedidos, coordinar la entrega y enviar confirmaciones de seguimiento vía WhatsApp o correo electrónico.</p><p style='margin-top:8px;'>Segutex Dotaciones no comercializa ni comparte bases de datos con terceros ajenos al servicio logístico.</p>"
+    },
+    reembolso: {
+      title: "Política de Reembolso y Cambios",
+      body: "<p>Ofrecemos garantía por defectos de confección o discrepancia en las tallas entregadas. Cuentas con <strong>5 días hábiles</strong> tras recibir el producto para solicitar un cambio.</p><p style='margin-top:8px;'>Las prendas deben encontrarse sin uso, limpias y en perfecto estado. Para tramitar tu solicitud, comunícate directamente a nuestra línea oficial de soporte en WhatsApp.</p>"
+    },
+    envio: {
+      title: "Política de Envío Nacional",
+      body: "<p>Realizamos despachos con cobertura nacional mediante transportadoras aliadas (Inter Rapidísimo, Coordinadora, Servientrega). Los tiempos promedio de entrega son de <strong>3 a 5 días hábiles</strong> según el municipio de destino.</p><p style='margin-top:8px;'>El envío no tiene costo adicional en compras bajo la promoción activa de Pago Contra Entrega.</p>"
+    }
+  };
+
+  function openLegalModal(type) {
+    if (legalDocs[type]) {
+      document.getElementById('legalModalTitle').innerText = legalDocs[type].title;
+      document.getElementById('legalModalBody').innerHTML = legalDocs[type].body;
+      document.getElementById('legalModal').style.display = 'flex';
+      document.body.classList.add('modal-open');
+    }
+  }
+
+  function closeLegalModal() {
+    document.getElementById('legalModal').style.display = 'none';
     document.body.classList.remove('modal-open');
   }
 
