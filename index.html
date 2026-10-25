@@ -23,39 +23,51 @@
       overflow: hidden;
     }
 
-    /* Top Instagram Announcement Bar */
-    .top-insta-bar {
+    /* Option A: Dynamic Rotating Top Announcement Bar */
+    .top-announcement-wrapper {
+      position: relative;
+      background: #0F172A;
+      height: 38px;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .announcement-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
-      background: #0F172A;
+      gap: 8px;
       color: #F8FAFC;
       text-decoration: none;
-      padding: 10px 14px;
       font-size: 11.5px;
       font-weight: 700;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.6px;
       text-transform: uppercase;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      transition: background 0.2s;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      padding: 0 14px;
     }
-    .top-insta-bar:hover {
-      background: #1E293B;
+    .announcement-slide.active {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .top-insta-bar svg {
-      width: 16px;
-      height: 16px;
+    .announcement-slide.exit {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    .announcement-slide svg {
+      width: 15px;
+      height: 15px;
       flex-shrink: 0;
     }
-    .top-insta-arrow {
+    .announcement-arrow {
       color: #94A3B8;
-      font-size: 13px;
-      transition: transform 0.2s;
-    }
-    .top-insta-bar:hover .top-insta-arrow {
-      transform: translateX(2px);
-      color: #FFFFFF;
+      font-size: 12px;
     }
 
     .header-banner {
@@ -435,7 +447,7 @@
       align-items: center;
       gap: 8px;
     }
-    .badge-icon { font-size: 18px; line- 1; }
+    .badge-icon { font-size: 18px; line-height: 1; }
     .badge-item h4 { margin: 0; font-size: 12px; color: #0F172A; font-weight: 700; }
     .badge-item p { margin: 0; font-size: 11px; color: #64748B; line-height: 1.25; }
 
@@ -610,25 +622,38 @@
 <body>
 
 <div class="page-container">
-  <!-- Top Instagram Announcement Bar -->
-  <a href="https://www.instagram.com/segutex.col" target="_blank" rel="noopener noreferrer" class="top-insta-bar">
-    <svg viewBox="0 0 24 24">
-      <defs>
-        <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#FFDC80"/>
-          <stop offset="30%" stop-color="#F77737"/>
-          <stop offset="60%" stop-color="#E1306C"/>
-          <stop offset="80%" stop-color="#C13584"/>
-          <stop offset="100%" stop-color="#833AB4"/>
-        </linearGradient>
-      </defs>
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="url(#ig-grad)" stroke-width="2.2"/>
-      <circle cx="12" cy="12" r="4.2" fill="none" stroke="url(#ig-grad)" stroke-width="2.2"/>
-      <circle cx="18" cy="6" r="1.3" fill="url(#ig-grad)"/>
-    </svg>
-    <span>Síguenos en Instagram</span>
-    <span class="top-insta-arrow">→</span>
-  </a>
+  <!-- Option A: Rotating Top Announcement Bar -->
+  <div class="top-announcement-wrapper" id="announcementContainer">
+    <!-- Slide 1: Instagram (Interactive) -->
+    <a href="https://www.instagram.com/segutex.col" target="_blank" rel="noopener noreferrer" class="announcement-slide active">
+      <svg viewBox="0 0 24 24">
+        <defs>
+          <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FFDC80"/>
+            <stop offset="30%" stop-color="#F77737"/>
+            <stop offset="60%" stop-color="#E1306C"/>
+            <stop offset="80%" stop-color="#C13584"/>
+            <stop offset="100%" stop-color="#833AB4"/>
+          </linearGradient>
+        </defs>
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="url(#ig-grad)" stroke-width="2.2"/>
+        <circle cx="12" cy="12" r="4.2" fill="none" stroke="url(#ig-grad)" stroke-width="2.2"/>
+        <circle cx="18" cy="6" r="1.3" fill="url(#ig-grad)"/>
+      </svg>
+      <span>Síguenos en Instagram</span>
+      <span class="announcement-arrow">→</span>
+    </a>
+
+    <!-- Slide 2: Fabric Quality (Informational) -->
+    <div class="announcement-slide">
+      <span>🧵 Confección Prémium Nacional en Piqué</span>
+    </div>
+
+    <!-- Slide 3: Safe Payment (Trust) -->
+    <div class="announcement-slide">
+      <span>🛡️ Compra Segura con Pago Contra Entrega</span>
+    </div>
+  </div>
 
   <div class="header-banner">
     <img id="store-logo" src="logo.png" alt="Segutex Dotaciones" class="brand-logo-img" onerror="checkLogoFallback(this)">
@@ -977,6 +1002,29 @@
     }, { passive: true });
 
     renderItemConfigs(1);
+    initAnnouncementSlider();
+  }
+
+  /* Rotating Top Announcement Controller */
+  function initAnnouncementSlider() {
+    const slides = document.querySelectorAll('.announcement-slide');
+    if (slides.length <= 1) return;
+    let slideIdx = 0;
+
+    setInterval(() => {
+      slides[slideIdx].classList.remove('active');
+      slides[slideIdx].classList.add('exit');
+
+      const prevIdx = slideIdx;
+      slideIdx = (slideIdx + 1) % slides.length;
+
+      slides[slideIdx].classList.remove('exit');
+      slides[slideIdx].classList.add('active');
+
+      setTimeout(() => {
+        slides[prevIdx].classList.remove('exit');
+      }, 400);
+    }, 3500);
   }
 
   function renderItemConfigs(qty) {
